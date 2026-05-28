@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>兩房兩衛 — 3D 即時選材</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;500;600;700&family=Noto+Sans+TC:wght@300;400;500;700&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,500;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/room-3d.css">
+</head>
+<body>
+
+    <!-- 導覽列 -->
+    <nav class="top-nav">
+        <div class="nav-inner">
+            <a href="../index.html" class="nav-brand">
+                <i class="fa-solid fa-building"></i>
+                <span>客變選樣系統</span>
+            </a>
+            <div class="nav-center">
+                <span class="nav-room-label">目前房型：<strong>兩房兩衛</strong></span>
+                <span class="nav-divider">|</span>
+                <span class="nav-3d-badge"><i class="fa-solid fa-cube"></i> 3D 即時預覽</span>
+            </div>
+            <div class="nav-right">
+                <a href="../index.html" class="btn-back"><i class="fa-solid fa-arrow-left"></i> 返回</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 主體 — 三欄式 -->
+    <div class="app-layout">
+
+        <!-- 左側選材面板 -->
+        <aside class="panel-left">
+            <div class="panel-left__header">
+                <h2 class="panel-left__title">選材面板</h2>
+                <p class="panel-left__subtitle">點選建材即時套用至 3D 場景</p>
+            </div>
+
+            <!-- 區域頁籤 -->
+            <div class="zone-tabs">
+                <button class="zone-tab active" data-zone="kitchen"><i class="fa-solid fa-utensils"></i> 廚房</button>
+                <button class="zone-tab" data-zone="bathroom"><i class="fa-solid fa-bath"></i> 衛浴</button>
+                <button class="zone-tab" data-zone="bedroom"><i class="fa-solid fa-bed"></i> 臥室</button>
+                <button class="zone-tab" data-zone="other"><i class="fa-solid fa-ellipsis"></i> 其他</button>
+            </div>
+
+            <div class="panel-left__scroll">
+
+                <!-- ===== 廚房 ===== -->
+                <div class="zone-panel active" id="zone-kitchen">
+
+                    <div class="mat-group">
+                        <div class="mat-group__head">
+                            <i class="fa-solid fa-tv"></i>
+                            <span>電器櫃</span>
+                        </div>
+                        <div class="mat-swatches">
+                            <label class="swatch" data-mesh="appliance_cabinet" data-color="#6b4c3b" data-texture="wood-walnut">
+                                <input type="radio" name="kitchen_cabinet" value="tropical-walnut" data-label="熱帶核桃木" checked>
+                                <div class="swatch__color" style="background:#6b4c3b;"></div>
+                                <span class="swatch__name">熱帶核桃木</span>
+                            </label>
+                            <label class="swatch" data-mesh="appliance_cabinet" data-color="#d4c5a9" data-texture="wood-oak-white">
+                                <input type="radio" name="kitchen_cabinet" value="oak-white" data-label="白橡木">
+                                <div class="swatch__color" style="background:#d4c5a9;"></div>
+                                <span class="swatch__name">白橡木</span>
+                            </label>
+                            <label class="swatch" data-mesh="appliance_cabinet" data-color="#9e9589" data-texture="wood-gray-oak">
+                                <input type="radio" name="kitchen_cabinet" value="gray-oak" data-label="灰橡木">
+                                <div class="swatch__color" style="background:#9e9589;"></div>
+                                <span class="swatch__name">灰橡木</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="mat-group">
+                        <div class="mat-group__head">
+                            <i class="fa-solid fa-sink"></i>
+                            <span>廚具檯面</span>
+                        </div>
+                        <div class="mat-swatches">
+                            <label class="swatch" data-mesh="countertop" data-color="#8a8078" data-texture="stone-gray">
+                                <input type="radio" name="kitchen_countertop" value="gray-pheasant" data-label="灰點帝雉石" checked>
+                                <div class="swatch__color" style="background:linear-gradient(135deg,#b0a89e,#8a8078);"></div>
+                                <span class="swatch__name">灰點帝雉石</span>
+                            </label>
+                            <label class="swatch" data-mesh="countertop" data-color="#e8e0d6" data-texture="stone-white">
+                                <input type="radio" name="kitchen_countertop" value="white-marble" data-label="雪白石">
+                                <div class="swatch__color" style="background:linear-gradient(135deg,#f0ede8,#d8d2c8);"></div>
+                                <span class="swatch__name">雪白石</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="mat-group">
+                        <div class="mat-group__head">
+                            <i class="fa-solid fa-square"></i>
+                            <span>上櫃面板</span>
+                        </div>
+                        <div class="mat-swatches">
+                            <label class="swatch" data-mesh="upper_cabinet" data-color="#6b4c3b" data-texture="wood-walnut">
+                                <input type="radio" name="upper_panel" value="tropical-walnut" data-label="熱帶核桃木" checked>
+                                <div class="swatch__color" style="background:#6b4c3b;"></div>
+                                <span class="swatch__name">熱帶核桃木</span>
+                            </label>
+                            <label class="swatch" data-mesh="upper_cabinet" data-color="#d4c5a9" data-texture="wood-oak-white">
+                                <input type="radio" name="upper_panel" value="oak-white" data-label="白橡木">
+                                <div class="swatch__color" style="background:#d4c5a9;"></div>
+                                <span class="swatch__name">白橡木</span>
+                            </label>
+                            <label class="swatch" data-mesh="upper_cabinet" data-color="#9e9589" data-texture="wood-gray-oak">
+                                <input type="radio" name="upper_panel" value="gray-oak" data-label="灰橡木">
+                                <div class="swatch__color" style="background:#9e9589;"></div>
+                                <span class="swatch__name">灰橡木</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="mat-group">
+                        <div class="mat-group__head">
+                            <i class="fa-solid fa-square"></i>
+                            <span>下櫃面板</span>
+                        </div>
+                        <div class="mat-swatches">
+                            <label class="swatch" data-mesh="lower_cabinet" data-color="#6b4c3b" data-texture="wood-walnut">
+                                <input type="radio" name="lower_panel" value="tropical-walnut" data-label="熱帶核桃木" checked>
+                                <div class="swatch__color" style="background:#6b4c3b;"></div>
+                                <span class="swatch__name">熱帶核桃木</span>
+                            </label>
+                            <label class="swatch" data-mesh="lower_cabinet" data-color="#d4c5a9" data-texture="wood-oak-white">
+                                <input type="radio" name="lower_panel" value="oak-white" data-label="白橡木">
+                                <div class="swatch__color" style="background:#d4c5a9;"></div>
+                                <span class="swatch__name">白橡木</span>
+                            </label>
+                            <label class="swatch" data-mesh="lower_cabinet" data-color="#9e9589" data-texture="wood-gray-oak">
+                                <input type="radio" name="lower_panel" value="gray-oak" data-label="灰橡木">
+                                <div class="swatch__color" style="background:#9e9589;"></div>
+                                <span class="swatch__name">灰橡木</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="mat-group">
+                        <div class="mat-group__head">
+                            <i class="fa-solid fa-table"></i>
+                            <span>中島櫃體</span>
+                        </div>
+                        <div class="mat-swatches">
+                            <label class="swatch" data-mesh="island_body" data-color="#6b4c3b" data-texture="wood-walnut">
+                                <input type="radio" name="island_body" value="tropical-walnut" data-label="熱帶核桃木" checked>
+                                <div class="swatch__color" style="background:#6b4c3b;"></div>
+                                <span class="swatch__name">熱帶核桃木</span>
+                            </label>
+                            <label class="swatch" data-mesh="island_body" data-color="#d4c5a9" data-texture="wood-oak-white">
+                                <input type="radio" name="island_body" value="oak-white" data-label="白橡木">
+                                <div class="swatch__color" style="background:#d4c5a9;"></div>
+                                <span class="swatch__name">白橡木</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="mat-group">
+                        <div class="mat-group__head">
+                            <i class="fa-solid fa-table"></i>
+                            <span>中島檯面</span>
+                        </div>
+                        <div class="mat-swatches">
+                            <label class="swatch" data-mesh="island_top" data-color="#8a8078" data-texture="stone-gray">
+                                <input type="radio" name="island_top" value="gray-pheasant" data-label="灰點帝雉石" checked>
+                                <div class="swatch__color" style="background:linear-gradient(135deg,#b0a89e,#8a8078);"></div>
+                                <span class="swatch__name">灰點帝雉石</span>
+                            </label>
+                            <label class="swatch" data-mesh="island_top" data-color="#e8e0d6" data-texture="stone-white">
+                                <input type="radio" name="island_top" value="white-marble" data-label="雪白石">
+                                <div class="swatch__color" style="background:linear-gradient(135deg,#f0ede8,#d8d2c8);"></div>
+                                <span class="swatch__name">雪白石</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="mat-group">
+                        <div class="mat-group__head">
+                            <i class="fa-solid fa-grip-lines"></i>
+                            <span>廚具烤玻</span>
+                        </div>
+                        <div class="mat-swatches">
+                            <label class="swatch" data-mesh="backsplash" data-color="#1a1a1a" data-texture="glass-black">
+                                <input type="radio" name="kitchen_glass" value="black" data-label="黑玻" checked>
+                                <div class="swatch__color" style="background:#1a1a1a;"></div>
+                                <span class="swatch__name">黑玻</span>
+                            </label>
+                            <label class="swatch" data-mesh="backsplash" data-color="#f0ede8" data-texture="glass-white">
+                                <input type="radio" name="kitchen_glass" value="white" data-label="白玻">
+                                <div class="swatch__color" style="background:#f0ede8; border:1px solid #ddd;"></div>
+                                <span class="swatch__name">白玻</span>
+                            </label>
+                            <label class="swatch" data-mesh="backsplash" data-color="#7a7a7a" data-texture="glass-gray">
+                                <input type="radio" name="kitchen_glass" value="gray" data-label="灰玻">
+                                <div class="swatch__color" style="background:#7a7a7a;"></div>
+                                <span class="swatch__name">灰玻</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="mat-group">
+                        <div class="mat-group__head">
+                            <i class="fa-solid fa-border-all"></i>
+                            <span>地坪</span>
+                        </div>
+                        <div class="mat-swatches">
+                            <label class="swatch" data-mesh="floor" data-color="#9e9590" data-texture="floor-butterfly-gray">
+                                <input type="radio" name="kitchen_floor" value="butterfly-gray" data-label="蝴蝶灰杉">
+                                <div class="swatch__color" style="background:#9e9590;"></div>
+                                <span class="swatch__name">蝴蝶灰杉</span>
+                            </label>
+                            <label class="swatch" data-mesh="floor" data-color="#c4a872" data-texture="floor-california-gold">
+                                <input type="radio" name="kitchen_floor" value="california-gold" data-label="加州金木">
+                                <div class="swatch__color" style="background:#c4a872;"></div>
+                                <span class="swatch__name">加州金木</span>
+                            </label>
+                            <label class="swatch" data-mesh="floor" data-color="#d6cfc5" data-texture="floor-king-snow">
+                                <input type="radio" name="kitchen_floor" value="king-snow" data-label="國王雪杉" checked>
+                                <div class="swatch__color" style="background:#d6cfc5;"></div>
+                                <span class="swatch__name">國王雪杉</span>
+                            </label>
+                            <label class="swatch" data-mesh="floor" data-color="#b8b0a5" data-texture="floor-california-silver">
+                                <input type="radio" name="kitchen_floor" value="california-silver" data-label="加州銀木">
+                                <div class="swatch__color" style="background:#b8b0a5;"></div>
+                                <span class="swatch__name">加州銀木</span>
+                            </label>
+                            <label class="swatch" data-mesh="floor" data-color="#c9b48a" data-texture="floor-king-gold">
+                                <input type="radio" name="kitchen_floor" value="king-gold" data-label="國王金杉">
+                                <div class="swatch__color" style="background:#c9b48a;"></div>
+                                <span class="swatch__name">國王金杉</span>
+                            </label>
+                            <label class="swatch" data-mesh="floor" data-color="#ddd5c4" data-texture="floor-butterfly-rice">
+                                <input type="radio" name="kitchen_floor" value="butterfly-rice" data-label="蝴蝶米杉">
+                                <div class="swatch__color" style="background:#ddd5c4;"></div>
+                                <span class="swatch__name">蝴蝶米杉</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="mat-group">
+                        <div class="mat-group__head">
+                            <i class="fa-solid fa-door-closed"></i>
+                            <span>門片顏色</span>
+                        </div>
+                        <div class="mat-swatches">
+                            <label class="swatch" data-mesh="door" data-color="#5c3d2e" data-texture="wood-walnut-dark">
+                                <input type="radio" name="door_color" value="walnut" data-label="胡桃木">
+                                <div class="swatch__color" style="background:#5c3d2e;"></div>
+                                <span class="swatch__name">胡桃木</span>
+                            </label>
+                            <label class="swatch" data-mesh="door" data-color="#8b7355" data-texture="wood-star-oak">
+                                <input type="radio" name="door_color" value="star-oak" data-label="星際橡木" checked>
+                                <div class="swatch__color" style="background:#8b7355;"></div>
+                                <span class="swatch__name">星際橡木</span>
+                            </label>
+                            <label class="swatch" data-mesh="door" data-color="#c4b896" data-texture="wood-eucalyptus">
+                                <input type="radio" name="door_color" value="eucalyptus" data-label="淺尤加利">
+                                <div class="swatch__color" style="background:#c4b896;"></div>
+                                <span class="swatch__name">淺尤加利</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ===== 衛浴 ===== -->
+                <div class="zone-panel" id="zone-bathroom">
+                    <div class="mat-group">
+                        <div class="mat-group__head">
+                            <i class="fa-solid fa-shower"></i>
+                            <span>主臥衛浴風格</span>
+                        </div>
+                        <div class="mat-swatches">
+                            <label class="swatch" data-mesh="bath_wall" data-color="#c4a882" data-texture="tile-modern">
+                                <input type="radio" name="master_bath_style" value="modern-pop" data-label="摩登普普風" checked>
+                                <div class="swatch__color" style="background:linear-gradient(135deg,#e8d5c4,#c4a882);"></div>
+                                <span class="swatch__name">摩登普普風</span>
+                            </label>
+                            <label class="swatch" data-mesh="bath_wall" data-color="#ccc8c0" data-texture="tile-nordic">
+                                <input type="radio" name="master_bath_style" value="nordic" data-label="北歐風">
+                                <div class="swatch__color" style="background:linear-gradient(135deg,#e8e4de,#ccc8c0);"></div>
+                                <span class="swatch__name">北歐風</span>
+                            </label>
+                            <label class="swatch" data-mesh="bath_wall" data-color="#a89880" data-texture="tile-japanese">
+                                <input type="radio" name="master_bath_style" value="japanese" data-label="日式禪風">
+                                <div class="swatch__color" style="background:linear-gradient(135deg,#c9bfa8,#a89880);"></div>
+                                <span class="swatch__name">日式禪風</span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="mat-group">
+                        <div class="mat-group__head">
+                            <i class="fa-solid fa-door-closed"></i>
+                            <span>主臥浴室門扇</span>
+                        </div>
+                        <div class="mat-swatches">
+                            <label class="swatch" data-mesh="bath_door" data-color="#5c3d2e" data-texture="wood-walnut-dark">
+                                <input type="radio" name="master_bath_door" value="walnut" data-label="胡桃木" checked>
+                                <div class="swatch__color" style="background:#5c3d2e;"></div>
+                                <span class="swatch__name">胡桃木</span>
+                            </label>
+                            <label class="swatch" data-mesh="bath_door" data-color="#8b7355" data-texture="wood-star-oak">
+                                <input type="radio" name="master_bath_door" value="star-oak" data-label="星際橡木">
+                                <div class="swatch__color" style="background:#8b7355;"></div>
+                                <span class="swatch__name">星際橡木</span>
+                            </label>
+                            <label class="swatch" data-mesh="bath_door" data-color="#c4b896" data-texture="wood-eucalyptus">
+                                <input type="radio" name="master_bath_door" value="eucalyptus" data-label="淺尤加利">
+                                <div class="swatch__color" style="background:#c4b896;"></div>
+                                <span class="swatch__name">淺尤加利</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ===== 臥室 ===== -->
+                <div class="zone-panel" id="zone-bedroom">
+                    <div class="mat-group">
+                        <div class="mat-group__head">
+                            <i class="fa-solid fa-door-closed"></i>
+                            <span>主臥門扇</span>
+                        </div>
+                        <div class="mat-swatches">
+                            <label class="swatch" data-mesh="bedroom_door" data-color="#5c3d2e" data-texture="wood-walnut-dark">
+                                <input type="radio" name="master_door" value="walnut" data-label="胡桃木" checked>
+                                <div class="swatch__color" style="background:#5c3d2e;"></div>
+                                <span class="swatch__name">胡桃木</span>
+                            </label>
+                            <label class="swatch" data-mesh="bedroom_door" data-color="#8b7355" data-texture="wood-star-oak">
+                                <input type="radio" name="master_door" value="star-oak" data-label="星際橡木">
+                                <div class="swatch__color" style="background:#8b7355;"></div>
+                                <span class="swatch__name">星際橡木</span>
+                            </label>
+                            <label class="swatch" data-mesh="bedroom_door" data-color="#c4b896" data-texture="wood-eucalyptus">
+                                <input type="radio" name="master_door" value="eucalyptus" data-label="淺尤加利">
+                                <div class="swatch__color" style="background:#c4b896;"></div>
+                                <span class="swatch__name">淺尤加利</span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="mat-group">
+                        <div class="mat-group__head">
+                            <i class="fa-solid fa-paint-roller"></i>
+                            <span>主臥油漆</span>
+                        </div>
+                        <div class="mat-swatches">
+                            <label class="swatch" data-mesh="bedroom_wall" data-color="#ffffff" data-texture="paint-white">
+                                <input type="radio" name="master_paint" value="white" data-label="白色" checked>
+                                <div class="swatch__color" style="background:#fff; border:1px solid #ddd;"></div>
+                                <span class="swatch__name">白色</span>
+                            </label>
+                            <label class="swatch" data-mesh="bedroom_wall" data-color="#d5cfc5" data-texture="paint-fog">
+                                <input type="radio" name="master_paint" value="fog-country" data-label="霧鄉">
+                                <div class="swatch__color" style="background:#d5cfc5;"></div>
+                                <span class="swatch__name">霧鄉</span>
+                            </label>
+                            <label class="swatch" data-mesh="bedroom_wall" data-color="#e8c4c0" data-texture="paint-pink">
+                                <input type="radio" name="master_paint" value="fog-pink" data-label="霧粉紅">
+                                <div class="swatch__color" style="background:#e8c4c0;"></div>
+                                <span class="swatch__name">霧粉紅</span>
+                            </label>
+                            <label class="swatch" data-mesh="bedroom_wall" data-color="#eacdb0" data-texture="paint-orange">
+                                <input type="radio" name="master_paint" value="light-orange" data-label="淡粉橘">
+                                <div class="swatch__color" style="background:#eacdb0;"></div>
+                                <span class="swatch__name">淡粉橘</span>
+                            </label>
+                            <label class="swatch" data-mesh="bedroom_wall" data-color="#c5d9c0" data-texture="paint-green">
+                                <input type="radio" name="master_paint" value="soda-green" data-label="蘇打綠">
+                                <div class="swatch__color" style="background:#c5d9c0;"></div>
+                                <span class="swatch__name">蘇打綠</span>
+                            </label>
+                            <label class="swatch" data-mesh="bedroom_wall" data-color="#b8d4e3" data-texture="paint-blue">
+                                <input type="radio" name="master_paint" value="baby-blue" data-label="嬰兒藍">
+                                <div class="swatch__color" style="background:#b8d4e3;"></div>
+                                <span class="swatch__name">嬰兒藍</span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="mat-group">
+                        <div class="mat-group__head">
+                            <i class="fa-solid fa-border-all"></i>
+                            <span>主臥地坪</span>
+                        </div>
+                        <div class="mat-swatches">
+                            <label class="swatch" data-mesh="bedroom_floor" data-color="#9e9590" data-texture="floor-butterfly-gray">
+                                <input type="radio" name="master_floor" value="butterfly-gray" data-label="蝴蝶灰杉" checked>
+                                <div class="swatch__color" style="background:#9e9590;"></div>
+                                <span class="swatch__name">蝴蝶灰杉</span>
+                            </label>
+                            <label class="swatch" data-mesh="bedroom_floor" data-color="#c4a872" data-texture="floor-california-gold">
+                                <input type="radio" name="master_floor" value="california-gold" data-label="加州金木">
+                                <div class="swatch__color" style="background:#c4a872;"></div>
+                                <span class="swatch__name">加州金木</span>
+                            </label>
+                            <label class="swatch" data-mesh="bedroom_floor" data-color="#d6cfc5" data-texture="floor-king-snow">
+                                <input type="radio" name="master_floor" value="king-snow" data-label="國王雪杉">
+                                <div class="swatch__color" style="background:#d6cfc5;"></div>
+                                <span class="swatch__name">國王雪杉</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ===== 其他 ===== -->
+                <div class="zone-panel" id="zone-other">
+                    <div class="mat-group">
+                        <div class="mat-group__head">
+                            <i class="fa-solid fa-dungeon"></i>
+                            <span>玄關門背面</span>
+                        </div>
+                        <div class="mat-swatches">
+                            <label class="swatch" data-mesh="entrance_door" data-color="#d4b896" data-texture="wood-maple">
+                                <input type="radio" name="entrance_door" value="maple" data-label="楓木" checked>
+                                <div class="swatch__color" style="background:#d4b896;"></div>
+                                <span class="swatch__name">楓木</span>
+                            </label>
+                            <label class="swatch" data-mesh="entrance_door" data-color="#a07840" data-texture="wood-teak">
+                                <input type="radio" name="entrance_door" value="teak" data-label="柚木">
+                                <div class="swatch__color" style="background:#a07840;"></div>
+                                <span class="swatch__name">柚木</span>
+                            </label>
+                            <label class="swatch" data-mesh="entrance_door" data-color="#5c3d2e" data-texture="wood-walnut-dark">
+                                <input type="radio" name="entrance_door" value="walnut" data-label="胡桃">
+                                <div class="swatch__color" style="background:#5c3d2e;"></div>
+                                <span class="swatch__name">胡桃</span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="mat-group">
+                        <div class="mat-group__head">
+                            <i class="fa-solid fa-paint-roller"></i>
+                            <span>客廳油漆</span>
+                        </div>
+                        <div class="mat-swatches">
+                            <label class="swatch" data-mesh="living_wall" data-color="#ffffff" data-texture="paint-white">
+                                <input type="radio" name="living_paint" value="white" data-label="白色" checked>
+                                <div class="swatch__color" style="background:#fff; border:1px solid #ddd;"></div>
+                                <span class="swatch__name">白色</span>
+                            </label>
+                            <label class="swatch" data-mesh="living_wall" data-color="#d5cfc5" data-texture="paint-fog">
+                                <input type="radio" name="living_paint" value="fog-country" data-label="霧鄉">
+                                <div class="swatch__color" style="background:#d5cfc5;"></div>
+                                <span class="swatch__name">霧鄉</span>
+                            </label>
+                            <label class="swatch" data-mesh="living_wall" data-color="#e8c4c0" data-texture="paint-pink">
+                                <input type="radio" name="living_paint" value="fog-pink" data-label="霧粉紅">
+                                <div class="swatch__color" style="background:#e8c4c0;"></div>
+                                <span class="swatch__name">霧粉紅</span>
+                            </label>
+                            <label class="swatch" data-mesh="living_wall" data-color="#eacdb0" data-texture="paint-orange">
+                                <input type="radio" name="living_paint" value="light-orange" data-label="淡粉橘">
+                                <div class="swatch__color" style="background:#eacdb0;"></div>
+                                <span class="swatch__name">淡粉橘</span>
+                            </label>
+                            <label class="swatch" data-mesh="living_wall" data-color="#c5d9c0" data-texture="paint-green">
+                                <input type="radio" name="living_paint" value="soda-green" data-label="蘇打綠">
+                                <div class="swatch__color" style="background:#c5d9c0;"></div>
+                                <span class="swatch__name">蘇打綠</span>
+                            </label>
+                            <label class="swatch" data-mesh="living_wall" data-color="#b8d4e3" data-texture="paint-blue">
+                                <input type="radio" name="living_paint" value="baby-blue" data-label="嬰兒藍">
+                                <div class="swatch__color" style="background:#b8d4e3;"></div>
+                                <span class="swatch__name">嬰兒藍</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+            </div><!-- /.panel-left__scroll -->
+        </aside>
+
+        <!-- 3D 視窗 -->
+        <main class="viewport-area">
+            <div id="three-canvas-container">
+                <canvas id="three-canvas"></canvas>
+            </div>
+
+            <!-- 場景控制 -->
+            <div class="viewport-controls">
+                <button class="vp-btn" id="btn-view-kitchen" title="廚房視角"><i class="fa-solid fa-utensils"></i></button>
+                <button class="vp-btn" id="btn-view-bedroom" title="臥室視角"><i class="fa-solid fa-bed"></i></button>
+                <button class="vp-btn" id="btn-view-bathroom" title="衛浴視角"><i class="fa-solid fa-bath"></i></button>
+                <button class="vp-btn" id="btn-view-top" title="俯視圖"><i class="fa-solid fa-eye"></i></button>
+                <div class="vp-divider"></div>
+                <button class="vp-btn" id="btn-reset" title="重置視角"><i class="fa-solid fa-arrows-rotate"></i></button>
+            </div>
+
+            <!-- 3D 提示 -->
+            <div class="viewport-hint">
+                <i class="fa-solid fa-hand-pointer"></i>
+                拖曳旋轉 · 滾輪縮放 · 右鍵平移
+            </div>
+
+            <!-- 載入畫面 -->
+            <div class="viewport-loader" id="viewport-loader">
+                <div class="loader-spinner"></div>
+                <p>正在建構 3D 場景...</p>
+            </div>
+        </main>
+
+        <!-- 右側摘要 -->
+        <aside class="panel-right">
+            <h3 class="panel-right__title">
+                <i class="fa-solid fa-clipboard-list"></i> 選材摘要
+            </h3>
+
+            <div class="sum-group">
+                <div class="sum-group__label">廚房</div>
+                <div class="sum-row"><span class="sum-key">電器櫃</span><span class="sum-val" data-key="kitchen_cabinet">熱帶核桃木</span></div>
+                <div class="sum-row"><span class="sum-key">廚具檯面</span><span class="sum-val" data-key="kitchen_countertop">灰點帝雉石</span></div>
+                <div class="sum-row"><span class="sum-key">上櫃面板</span><span class="sum-val" data-key="upper_panel">熱帶核桃木</span></div>
+                <div class="sum-row"><span class="sum-key">下櫃面板</span><span class="sum-val" data-key="lower_panel">熱帶核桃木</span></div>
+                <div class="sum-row"><span class="sum-key">中島櫃體</span><span class="sum-val" data-key="island_body">熱帶核桃木</span></div>
+                <div class="sum-row"><span class="sum-key">中島檯面</span><span class="sum-val" data-key="island_top">灰點帝雉石</span></div>
+                <div class="sum-row"><span class="sum-key">廚具烤玻</span><span class="sum-val" data-key="kitchen_glass">黑玻</span></div>
+                <div class="sum-row"><span class="sum-key">地坪</span><span class="sum-val" data-key="kitchen_floor">國王雪杉</span></div>
+                <div class="sum-row"><span class="sum-key">門片顏色</span><span class="sum-val" data-key="door_color">星際橡木</span></div>
+            </div>
+
+            <div class="sum-group">
+                <div class="sum-group__label">衛浴</div>
+                <div class="sum-row"><span class="sum-key">主臥衛浴風格</span><span class="sum-val" data-key="master_bath_style">摩登普普風</span></div>
+                <div class="sum-row"><span class="sum-key">主臥浴室門扇</span><span class="sum-val" data-key="master_bath_door">胡桃木</span></div>
+            </div>
+
+            <div class="sum-group">
+                <div class="sum-group__label">臥室</div>
+                <div class="sum-row"><span class="sum-key">主臥門扇</span><span class="sum-val" data-key="master_door">胡桃木</span></div>
+                <div class="sum-row"><span class="sum-key">主臥油漆</span><span class="sum-val" data-key="master_paint">白色</span></div>
+                <div class="sum-row"><span class="sum-key">主臥地坪</span><span class="sum-val" data-key="master_floor">蝴蝶灰杉</span></div>
+            </div>
+
+            <div class="sum-group">
+                <div class="sum-group__label">其他</div>
+                <div class="sum-row"><span class="sum-key">玄關門背面</span><span class="sum-val" data-key="entrance_door">楓木</span></div>
+                <div class="sum-row"><span class="sum-key">客廳油漆</span><span class="sum-val" data-key="living_paint">白色</span></div>
+            </div>
+
+            <button class="btn-submit" id="btn-submit">
+                <i class="fa-solid fa-paper-plane"></i> 送出夢想需求
+            </button>
+        </aside>
+    </div>
+
+    <!-- Three.js CDN -->
+    <script type="importmap">
+    {
+        "imports": {
+            "three": "https://cdn.jsdelivr.net/npm/three@0.162.0/build/three.module.js",
+            "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.162.0/examples/jsm/"
+        }
+    }
+    </script>
+    <script type="module" src="../js/room-3d-scene.js"></script>
+    <script src="../js/room-3d.js"></script>
+</body>
+</html>

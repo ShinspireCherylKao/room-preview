@@ -1,0 +1,305 @@
+- generic [ref=e2]:
+  - banner [ref=e3]:
+    - navigation [ref=e5]:
+      - link [ref=e6] [cursor=pointer]:
+        - /url: /
+      - generic [ref=e7] [cursor=pointer]:
+        - generic [ref=e8]: 
+        - text: MENUS
+  - navigation [ref=e9]:
+    - text: 
+    - list [ref=e10]:
+      - listitem [ref=e11]:
+        - link "閱讀經典" [ref=e12] [cursor=pointer]:
+          - /url: /read
+      - listitem [ref=e13]:
+        - link "閱讀好境" [ref=e14] [cursor=pointer]:
+          - /url: /traffic
+      - listitem [ref=e15]:
+        - link "質感選材" [ref=e16] [cursor=pointer]:
+          - /url: /quality
+      - listitem [ref=e17]:
+        - link "售後服務" [ref=e18] [cursor=pointer]:
+          - /url: /service
+      - listitem [ref=e19]:
+        - link "職人訂製" [ref=e20] [cursor=pointer]:
+          - /url: /dream
+      - listitem [ref=e21]:
+        - link "線上品鑑" [ref=e22] [cursor=pointer]:
+          - /url: /online
+      - listitem [ref=e23]:
+        - link "防水工法" [ref=e24] [cursor=pointer]:
+          - /url: /waterproof
+  - generic [ref=e26]:
+    - generic [ref=e27]:
+      - generic [ref=e30]:
+        - heading "職人訂製-大三房" [level=2] [ref=e31]
+        - paragraph [ref=e33]: 依據您的要求調配格局，並提供建材選配，打造出最適合您的訂製住宅
+      - generic [ref=e34]:
+        - generic [ref=e35]:
+          - generic [ref=e50]: 此為網站測試樣版，實際以買賣合約書為準
+          - generic [ref=e52]:
+            - generic [ref=e53]:
+              - generic [ref=e54]: 電器櫃
+              - generic [ref=e55]:
+                - combobox "電器櫃" [ref=e56]:
+                  - option "熱帶核桃木" [selected]
+                  - option "奶油白"
+                  - option "深貂灰"
+                  - option "香檳色"
+                  - option "淺灰木紋"
+                  - option "北歐梣木"
+                - generic [ref=e57]: 
+            - generic [ref=e58]:
+              - generic [ref=e59]: 廚具檯面
+              - generic [ref=e60]:
+                - combobox "廚具檯面" [ref=e61]:
+                  - option "灰點帝雉石" [selected]
+                  - option "米黃帝雉石"
+                  - option "黑曜帝雉石"
+                  - option "白點帝雉石"
+                  - option "白色帝雉石"
+                  - option "不鏽鋼亂紋面"
+                - generic [ref=e62]: 
+            - generic [ref=e63]:
+              - generic [ref=e64]: 上櫃面板
+              - generic [ref=e65]:
+                - combobox "上櫃面板" [ref=e66]:
+                  - option "熱帶核桃木" [selected]
+                  - option "奶油白"
+                  - option "深貂灰"
+                  - option "香檳色"
+                  - option "淺灰木紋"
+                  - option "北歐梣木"
+                - generic [ref=e67]: 
+            - generic [ref=e68]:
+              - generic [ref=e69]: 下櫃面板
+              - generic [ref=e70]:
+                - combobox "下櫃面板" [ref=e71]:
+                  - option "熱帶核桃木" [selected]
+                  - option "奶油白"
+                  - option "深貂灰"
+                  - option "香檳色"
+                  - option "淺灰木紋"
+                  - option "北歐梣木"
+                - generic [ref=e72]: 
+            - generic [ref=e73]:
+              - generic [ref=e74]: 中島櫃體
+              - generic [ref=e75]:
+                - combobox "中島櫃體" [ref=e76]:
+                  - option "熱帶核桃木" [selected]
+                  - option "奶油白"
+                  - option "深貂灰"
+                  - option "香檳色"
+                  - option "淺灰木紋"
+                  - option "北歐梣木"
+                - generic [ref=e77]: 
+            - generic [ref=e78]:
+              - generic [ref=e79]: 中島檯面
+              - generic [ref=e80]:
+                - combobox "中島檯面" [ref=e81]:
+                  - option "灰點帝雉石" [selected]
+                  - option "米黃帝雉石"
+                  - option "黑曜帝雉石"
+                  - option "白點帝雉石"
+                  - option "白色帝雉石"
+                  - option "不鏽鋼亂紋面"
+                - generic [ref=e82]: 
+            - generic [ref=e83]:
+              - generic [ref=e84]: 廚具烤玻
+              - generic [ref=e85]:
+                - combobox "廚具烤玻" [ref=e86]:
+                  - option "黑玻" [selected]
+                  - option "白玻"
+                  - option "灰玻"
+                - generic [ref=e87]: 
+            - generic [ref=e88]:
+              - generic [ref=e89]: 地坪
+              - generic [ref=e90]:
+                - combobox "地坪" [ref=e91]:
+                  - option "國王雪杉EW8262" [selected]
+                  - option "國王金杉EW2000"
+                  - option "加州金木EW8263"
+                  - option "加州銀木EW8261"
+                  - option "蝴蝶米杉EW2004"
+                  - option "蝴蝶灰杉"
+                - generic [ref=e92]: 
+            - generic [ref=e93]:
+              - generic [ref=e94]: 門片顏色
+              - generic [ref=e95]:
+                - combobox "門片顏色" [ref=e96]:
+                  - option "星際橡木" [selected]
+                  - option "淺尤加利"
+                  - option "胡桃木"
+                - generic [ref=e97]: 
+        - heading "衛浴" [level=2] [ref=e100]
+        - generic [ref=e101]:
+          - tablist [ref=e103]:
+            - tab "主臥衛浴" [ref=e104] [cursor=pointer]
+            - tab "次臥衛浴" [ref=e105] [cursor=pointer]
+          - generic [ref=e107]:
+            - tabpanel [ref=e108]:
+              - generic [ref=e109]:
+                - generic [ref=e110]:
+                  - heading "請選擇主臥衛浴風格及面板" [level=3] [ref=e111]
+                  - generic [ref=e112]:
+                    - generic [ref=e113]:
+                      - generic [ref=e114]: 主臥衛浴風格
+                      - generic [ref=e115]:
+                        - combobox [ref=e116]:
+                          - option "摩登普普風" [selected]
+                          - option "柔情洛可可"
+                          - option "經典巴洛克"
+                        - generic [ref=e117]: 
+                    - generic [ref=e118]:
+                      - generic [ref=e119]: 主臥浴室門扇
+                      - generic [ref=e120]:
+                        - combobox [ref=e121]:
+                          - option "胡桃木"
+                          - option "星際橡木"
+                          - option "淺尤加利" [selected]
+                        - generic [ref=e122]: 
+                  - generic [ref=e123]:
+                    - list [ref=e124]:
+                      - listitem [ref=e125]: 磁磚鋪貼方式因每戶浴室開門開窗位置不一，實際依現場施作為主
+                      - listitem [ref=e126]: 3D僅為空間示意
+                    - generic [ref=e127]: 實際磁磚款式依現場選材室為主
+                - generic [ref=e130]: 此為網站測試樣版，實際以買賣合約書為準
+            - text:  
+        - heading "臥室" [level=2] [ref=e133]
+        - generic [ref=e134]:
+          - tablist [ref=e136]:
+            - tab "主臥室" [ref=e137] [cursor=pointer]
+            - tab "臥室1" [ref=e138] [cursor=pointer]
+            - tab "臥室2" [ref=e139] [cursor=pointer]
+          - tabpanel [ref=e142]:
+            - generic [ref=e144]:
+              - generic [ref=e145]:
+                - generic [ref=e146]: 主臥門扇
+                - generic [ref=e150]: 胡桃木
+                - generic [ref=e154]: 星際橡木
+                - generic [ref=e158]: 淺尤加利
+              - generic [ref=e159]:
+                - generic [ref=e160]: 主臥地坪
+                - generic [ref=e164]: 蝴蝶灰杉
+                - generic [ref=e168]: 加州金木EW8263
+                - generic [ref=e172]: 國王雪杉EW8262
+                - generic [ref=e176]: 加州銀木EW8261
+                - generic [ref=e180]: 國王金杉EW2000
+                - generic [ref=e184]: 蝴蝶米杉EW2004
+              - generic [ref=e185]:
+                - generic [ref=e186]: 主臥油漆
+                - generic [ref=e190]: 白色
+                - generic [ref=e194]: 霧鄉
+                - generic [ref=e198]: 霧粉紅
+                - generic [ref=e202]: 淡粉橘
+                - generic [ref=e206]: 蘇打綠
+                - generic [ref=e210]: 嬰兒藍
+        - heading "其他" [level=2] [ref=e213]
+        - generic [ref=e215]:
+          - heading "玄關門背面" [level=3] [ref=e217]
+          - generic [ref=e218]:
+            - generic [ref=e222]: 楓木
+            - generic [ref=e226]: 柚木
+            - generic [ref=e230]: 胡桃
+        - generic [ref=e232]:
+          - heading "客廳油漆" [level=3] [ref=e234]
+          - generic [ref=e235]:
+            - generic [ref=e239]: 白色
+            - generic [ref=e243]: 霧鄉
+            - generic [ref=e247]: 霧粉紅
+            - generic [ref=e251]: 淡粉橘
+            - generic [ref=e255]: 蘇打綠
+            - generic [ref=e259]: 嬰兒藍
+    - generic [ref=e262]:
+      - generic [ref=e263]:
+        - generic [ref=e264]:
+          - heading "電器櫃" [level=4] [ref=e265]
+          - paragraph [ref=e266]: 熱帶核桃木
+        - generic [ref=e267]:
+          - heading "廚具檯面" [level=4] [ref=e268]
+          - paragraph [ref=e269]: 灰點帝雉石
+        - generic [ref=e270]:
+          - heading "上櫃面板" [level=4] [ref=e271]
+          - paragraph [ref=e272]: 熱帶核桃木
+        - generic [ref=e273]:
+          - heading "下櫃面板" [level=4] [ref=e274]
+          - paragraph [ref=e275]: 熱帶核桃木
+        - generic [ref=e276]:
+          - heading "中島櫃體" [level=4] [ref=e277]
+          - paragraph [ref=e278]: 熱帶核桃木
+        - generic [ref=e279]:
+          - heading "中島檯面" [level=4] [ref=e280]
+          - paragraph [ref=e281]: 灰點帝雉石
+        - generic [ref=e282]:
+          - heading "廚具烤玻" [level=4] [ref=e283]
+          - paragraph [ref=e284]: 黑玻
+        - generic [ref=e285]:
+          - heading "地坪" [level=4] [ref=e286]
+          - paragraph [ref=e287]: 國王雪杉EW8262
+      - generic [ref=e288]:
+        - generic [ref=e289]:
+          - heading "門片顏色" [level=4] [ref=e290]
+          - paragraph [ref=e291]: 星際橡木
+        - generic [ref=e292]:
+          - heading "主臥衛浴風格" [level=4] [ref=e293]
+          - paragraph [ref=e294]: 摩登普普風
+        - generic [ref=e295]:
+          - heading "主臥浴室門扇" [level=4] [ref=e296]
+          - paragraph [ref=e297]: 淺尤加利
+        - generic [ref=e298]:
+          - heading "次臥衛浴風格" [level=4] [ref=e299]
+          - paragraph [ref=e300]: 摩登普普風
+        - generic [ref=e301]:
+          - heading "次臥浴室門扇" [level=4] [ref=e302]
+          - paragraph [ref=e303]: 胡桃木
+        - generic [ref=e304]:
+          - heading "主臥門扇" [level=4] [ref=e305]
+          - paragraph [ref=e306]: 胡桃木
+        - generic [ref=e307]:
+          - heading "主臥地坪" [level=4] [ref=e308]
+          - paragraph [ref=e309]: 蝴蝶灰杉
+        - generic [ref=e310]:
+          - heading "主臥油漆" [level=4] [ref=e311]
+          - paragraph [ref=e312]: 白色
+      - generic [ref=e313]:
+        - generic [ref=e314]:
+          - heading "臥室1門扇" [level=4] [ref=e315]
+          - paragraph [ref=e316]: 胡桃木
+        - generic [ref=e317]:
+          - heading "臥室1地坪" [level=4] [ref=e318]
+          - paragraph [ref=e319]: 蝴蝶灰杉
+        - generic [ref=e320]:
+          - heading "臥室1油漆" [level=4] [ref=e321]
+          - paragraph [ref=e322]: 白色
+        - generic [ref=e323]:
+          - heading "臥室2門扇" [level=4] [ref=e324]
+          - paragraph [ref=e325]: 胡桃木
+        - generic [ref=e326]:
+          - heading "臥室2地坪" [level=4] [ref=e327]
+          - paragraph [ref=e328]: 蝴蝶灰杉
+        - generic [ref=e329]:
+          - heading "臥室2油漆" [level=4] [ref=e330]
+          - paragraph [ref=e331]: 白色
+        - generic [ref=e332]:
+          - heading "玄關門背面" [level=4] [ref=e333]
+          - paragraph [ref=e334]: 楓木
+        - generic [ref=e335]:
+          - heading "客廳油漆" [level=4] [ref=e336]
+          - paragraph [ref=e337]: 白色
+    - generic [ref=e343] [cursor=pointer]:
+      - paragraph [ref=e344]: 我是已預定客戶
+      - heading "送出夢想需求 >" [level=3] [ref=e345]
+  - contentinfo [ref=e346]:
+    - generic [ref=e348]:
+      - paragraph [ref=e350]: Copyright © 2022 丞石建築開發有限公司 All Rights Reserved | 賞屋專線02-8531-8000
+      - generic [ref=e352]:
+        - link "線上預約" [ref=e353] [cursor=pointer]:
+          - /url: /dream/reservation/visit
+        - link "丞石官網" [ref=e354] [cursor=pointer]:
+          - /url: http://honor-home.com.tw/home.html
+        - link "粉絲團" [ref=e355] [cursor=pointer]:
+          - /url: https://www.facebook.com/Honor.Discovering.TW
+        - link "Google map" [ref=e356] [cursor=pointer]:
+          - /url: https://goo.gl/maps/ySWhB7fgLMDzrQKF9
+    - text:    

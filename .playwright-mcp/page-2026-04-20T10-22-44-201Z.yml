@@ -1,0 +1,91 @@
+- generic [ref=e1]:
+  - navigation [ref=e2]:
+    - generic [ref=e3]:
+      - link " 職人訂製" [ref=e4] [cursor=pointer]:
+        - /url: ../index.html
+        - generic [ref=e5]: 
+        - generic [ref=e6]: 職人訂製
+      - generic [ref=e7]: 舒適套房 — Canvas 材質預覽
+      - link " SVG 版本" [ref=e9] [cursor=pointer]:
+        - /url: tworoom-preview.html
+        - generic [ref=e10]: 
+        - text: SVG 版本
+  - generic [ref=e11]:
+    - banner [ref=e12]:
+      - heading "職人訂製 — 舒適套房" [level=1] [ref=e13]
+      - paragraph [ref=e14]: 使用 Canvas + SAM 遮罩即時合成材質，選擇材質貼圖或顏色立即預覽
+      - generic [ref=e15]:
+        - generic [ref=e16]: 
+        - text: Canvas 即時合成版
+    - generic [ref=e17]:
+      - button " 廚房" [active] [ref=e18] [cursor=pointer]:
+        - generic [ref=e19]: 
+        - text: 廚房
+      - button " 客餐廳" [ref=e20] [cursor=pointer]:
+        - generic [ref=e21]: 
+        - text: 客餐廳
+      - button " 主浴" [ref=e22] [cursor=pointer]:
+        - generic [ref=e23]: 
+        - text: 主浴
+    - generic [ref=e24]:
+      - paragraph [ref=e28]:
+        - generic [ref=e29]: 
+        - text: 圖片僅為空間示意，實際以現場選材室為主
+      - generic [ref=e30]:
+        - generic [ref=e281]:
+          - generic [ref=e282]: 地坪
+          - generic [ref=e283]:
+            - generic [ref=e284] [cursor=pointer]:
+              - generic [ref=e286]: 
+              - generic [ref=e287]: 原始
+            - generic [ref=e290] [cursor=pointer]: 白橡木
+            - generic [ref=e293] [cursor=pointer]: 深胡桃木
+            - generic [ref=e296] [cursor=pointer]: 蝴蝶灰杉
+            - generic [ref=e299] [cursor=pointer]: 加州金木
+            - generic [ref=e302] [cursor=pointer]: 國王雪杉
+        - generic [ref=e303]:
+          - generic [ref=e304]: 廚具檯面
+          - generic [ref=e305]:
+            - generic [ref=e306] [cursor=pointer]:
+              - generic [ref=e308]: 
+              - generic [ref=e309]: 原始
+            - generic [ref=e312] [cursor=pointer]: 雪白石
+            - generic [ref=e315] [cursor=pointer]: 深灰石
+            - generic [ref=e318] [cursor=pointer]: 灰點帝雉石
+        - generic [ref=e319]:
+          - generic [ref=e320]: 上櫃面板
+          - generic [ref=e321]:
+            - generic [ref=e322] [cursor=pointer]:
+              - generic [ref=e324]: 
+              - generic [ref=e325]: 原始
+            - generic [ref=e328] [cursor=pointer]: 熱帶核桃木
+            - generic [ref=e331] [cursor=pointer]: 白橡木
+            - generic [ref=e334] [cursor=pointer]: 灰橡木
+        - generic [ref=e335]:
+          - generic [ref=e336]: 下櫃面板
+          - generic [ref=e337]:
+            - generic [ref=e338] [cursor=pointer]:
+              - generic [ref=e340]: 
+              - generic [ref=e341]: 原始
+            - generic [ref=e344] [cursor=pointer]: 熱帶核桃木
+            - generic [ref=e347] [cursor=pointer]: 白橡木
+            - generic [ref=e350] [cursor=pointer]: 灰橡木
+    - generic [ref=e101]:
+      - heading " 選材摘要" [level=3] [ref=e103]:
+        - generic [ref=e104]: 
+        - text: 選材摘要
+      - generic [ref=e105]:
+        - generic [ref=e351]:
+          - generic [ref=e352]: 地坪
+          - generic [ref=e353]: 白橡木
+        - generic [ref=e354]:
+          - generic [ref=e355]: 廚具檯面
+          - generic [ref=e356]: 深灰石
+        - generic [ref=e357]:
+          - generic [ref=e358]: 上櫃面板
+          - generic [ref=e359]: 白橡木
+        - generic [ref=e360]:
+          - generic [ref=e361]: 下櫃面板
+          - generic [ref=e362]: 灰橡木
+    - contentinfo [ref=e118]:
+      - paragraph [ref=e119]: © 2025 客變選樣系統 — 所有內容僅供參考，實際以買賣合約書為準

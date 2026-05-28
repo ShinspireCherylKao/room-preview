@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>舒適套房 — 客變選樣套圖</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;500;600;700&family=Noto+Sans+TC:wght@300;400;500;700&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,500;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/room-preview.css">
+</head>
+<body>
+
+<!-- ====== 導覽列 ====== -->
+<nav class="top-nav">
+    <div class="nav-inner">
+        <a href="../index.html" class="nav-brand">
+            <i class="fa-solid fa-building"></i>
+            <span>達合莊園</span>
+        </a>
+        <div class="nav-center">
+            <span class="nav-room-label">舒適套房</span>
+        </div>
+        <div class="nav-right">
+            <a href="../index.html" class="btn-back"><i class="fa-solid fa-arrow-left"></i> 返回選擇</a>
+        </div>
+    </div>
+</nav>
+
+<!-- ====== 頁面主體 ====== -->
+<div class="page-wrapper">
+
+    <!-- 頁首 -->
+    <header class="page-hero">
+        <h1 class="page-hero__title">達合莊園 — 舒適套房</h1>
+        <p class="page-hero__desc">依據您的要求調配格局，並提供建材選配，打造出最適合您的訂製住宅</p>
+        <span class="page-hero__disclaimer">此為網站測試樣版，實際以買賣合約書為準</span>
+    </header>
+
+    <!-- 區塊 Tabs -->
+    <div class="section-tabs">
+        <button class="section-tab active" data-tab="kitchen"><i class="fa-solid fa-kitchen-set"></i> 廚房/客餐廳</button>
+        <button class="section-tab" data-tab="bath"><i class="fa-solid fa-shower"></i> 主浴</button>
+    </div>
+
+    <!-- ============================================ -->
+    <!-- TAB: 廚房 / 客餐廳                           -->
+    <!-- ============================================ -->
+    <div class="tab-panel active" id="tab-kitchen">
+        <div class="panel-grid">
+
+            <!-- 左：照片預覽 -->
+            <div class="viewer-col">
+                <div class="viewer" id="viewer-kitchen">
+                    <!-- 近景：廚房 -->
+                    <svg class="photo-view active" id="view-near"
+                         viewBox="0 0 822 732" preserveAspectRatio="xMidYMid slice">
+                        <image href="../image/原圖/廚房.jpg" width="822" height="732"/>
+                        <!-- 電器櫃 -->
+                        <rect data-zone="appliance-cab" class="zone"
+                              x="8" y="68" width="278" height="598" rx="4"
+                              fill="#6b4c3b" opacity="0"/>
+                        <!-- 上櫃面板 -->
+                        <rect data-zone="upper-cab" class="zone"
+                              x="295" y="55" width="210" height="240" rx="3"
+                              fill="#6b4c3b" opacity="0"/>
+                        <!-- 廚具檯面 -->
+                        <rect data-zone="countertop" class="zone"
+                              x="290" y="350" width="255" height="48" rx="2"
+                              fill="#8a8078" opacity="0"/>
+                        <!-- 下櫃面板 -->
+                        <rect data-zone="lower-cab" class="zone"
+                              x="295" y="402" width="218" height="268" rx="3"
+                              fill="#6b4c3b" opacity="0"/>
+                    </svg>
+
+                    <!-- 遠景：客餐廳 -->
+                    <svg class="photo-view" id="view-far"
+                         viewBox="0 0 998 812" preserveAspectRatio="xMidYMid slice">
+                        <image href="../image/原圖/客餐廳.jpg" width="998" height="812"/>
+                        <!-- 地坪 -->
+                        <polygon data-zone="floor" class="zone"
+                                 points="0,540 998,495 998,812 0,812"
+                                 fill="#d6cfc5" opacity="0"/>
+                        <!-- 客廳油漆（牆面） -->
+                        <polygon data-zone="wall" class="zone"
+                                 points="360,0 850,0 850,270 360,260"
+                                 fill="#ffffff" opacity="0"/>
+                        <!-- 門片顏色 -->
+                        <rect data-zone="door" class="zone"
+                              x="920" y="55" width="55" height="380" rx="3"
+                              fill="#8b7355" opacity="0"/>
+
+                    </svg>
+
+                    <!-- 近景/遠景指示 -->
+                    <div class="view-indicator">
+                        <button class="view-indicator__btn active" data-view="near">
+                            <i class="fa-solid fa-magnifying-glass-plus"></i> 近景
+                        </button>
+                        <button class="view-indicator__btn" data-view="far">
+                            <i class="fa-solid fa-magnifying-glass-minus"></i> 遠景
+                        </button>
+                    </div>
+                </div>
+                <p class="viewer-note">
+                    <i class="fa-solid fa-circle-info"></i>
+                    圖片僅為空間示意，實際以現場選材室為主
+                </p>
+            </div>
+
+            <!-- 右：選材面板 -->
+            <div class="select-col">
+
+                <!-- === 近景材料 === -->
+                <div class="mat-cat" data-view="near" data-zone="appliance-cab">
+                    <div class="mat-cat__head">電器櫃</div>
+                    <div class="mat-cat__swatches">
+                        <label class="swatch">
+                            <input type="radio" name="appliance_cab" value="tropical-walnut"
+                                   data-label="熱帶核桃木" data-color="#6b4c3b" checked>
+                            <span class="swatch__chip" style="background:#6b4c3b"></span>
+                            <span class="swatch__label">熱帶核桃木</span>
+                        </label>
+                        <label class="swatch">
+                            <input type="radio" name="appliance_cab" value="oak-white"
+                                   data-label="白橡木" data-color="#d4c5a9">
+                            <span class="swatch__chip" style="background:#d4c5a9"></span>
+                            <span class="swatch__label">白橡木</span>
+                        </label>
+                        <label class="swatch">
+                            <input type="radio" name="appliance_cab" value="gray-oak"
+                                   data-label="灰橡木" data-color="#9e9589">
+                            <span class="swatch__chip" style="background:#9e9589"></span>
+                            <span class="swatch__label">灰橡木</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="mat-cat" data-view="near" data-zone="countertop">
+                    <div class="mat-cat__head">廚具檯面</div>
+                    <div class="mat-cat__swatches">
+                        <label class="swatch">
+                            <input type="radio" name="countertop" value="gray-pheasant"
+                                   data-label="灰點帝雉石" data-color="#8a8078" checked>
+                            <span class="swatch__chip" style="background:linear-gradient(135deg,#b0a89e,#8a8078)"></span>
+                            <span class="swatch__label">灰點帝雉石</span>
+                        </label>
+                        <label class="swatch">
+                            <input type="radio" name="countertop" value="snow-white"
+                                   data-label="雪白石" data-color="#e8e0d6">
+                            <span class="swatch__chip" style="background:linear-gradient(135deg,#f0ede8,#d8d2c8)"></span>
+                            <span class="swatch__label">雪白石</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="mat-cat" data-view="near" data-zone="upper-cab">
+                    <div class="mat-cat__head">上櫃面板</div>
+                    <div class="mat-cat__swatches">
+                        <label class="swatch">
+                            <input type="radio" name="upper_cab" value="tropical-walnut"
+                                   data-label="熱帶核桃木" data-color="#6b4c3b" checked>
+                            <span class="swatch__chip" style="background:#6b4c3b"></span>
+                            <span class="swatch__label">熱帶核桃木</span>
+                        </label>
+                        <label class="swatch">
+                            <input type="radio" name="upper_cab" value="oak-white"
+                                   data-label="白橡木" data-color="#d4c5a9">
+                            <span class="swatch__chip" style="background:#d4c5a9"></span>
+                            <span class="swatch__label">白橡木</span>
+                        </label>
+                        <label class="swatch">
+                            <input type="radio" name="upper_cab" value="gray-oak"
+                                   data-label="灰橡木" data-color="#9e9589">
+                            <span class="swatch__chip" style="background:#9e9589"></span>
+                            <span class="swatch__label">灰橡木</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="mat-cat" data-view="near" data-zone="lower-cab">
+                    <div class="mat-cat__head">下櫃面板</div>
+                    <div class="mat-cat__swatches">
+                        <label class="swatch">
+                            <input type="radio" name="lower_cab" value="tropical-walnut"
+                                   data-label="熱帶核桃木" data-color="#6b4c3b" checked>
+                            <span class="swatch__chip" style="background:#6b4c3b"></span>
+                            <span class="swatch__label">熱帶核桃木</span>
+                        </label>
+                        <label class="swatch">
+                            <input type="radio" name="lower_cab" value="oak-white"
+                                   data-label="白橡木" data-color="#d4c5a9">
+                            <span class="swatch__chip" style="background:#d4c5a9"></span>
+                            <span class="swatch__label">白橡木</span>
+                        </label>
+                        <label class="swatch">
+                            <input type="radio" name="lower_cab" value="gray-oak"
+                                   data-label="灰橡木" data-color="#9e9589">
+                            <span class="swatch__chip" style="background:#9e9589"></span>
+                            <span class="swatch__label">灰橡木</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="mat-cat__divider"><span>以下項目將切換至遠景顯示</span></div>
+
+                <!-- === 遠景材料 === -->
+                <div class="mat-cat" data-view="far" data-zone="floor">
+                    <div class="mat-cat__head">地坪</div>
+                    <div class="mat-cat__swatches">
+                        <label class="swatch">
+                            <input type="radio" name="floor" value="gray-oak"
+                                   data-label="灰橡木" data-color="#9e9590">
+                            <span class="swatch__chip" style="background:#9e9590"></span>
+                            <span class="swatch__label">灰橡木</span>
+                        </label>
+                        <label class="swatch">
+                            <input type="radio" name="floor" value="white-pine"
+                                   data-label="白松木" data-color="#d6cfc5" checked>
+                            <span class="swatch__chip" style="background:#d6cfc5"></span>
+                            <span class="swatch__label">白松木</span>
+                        </label>
+                        <label class="swatch">
+                            <input type="radio" name="floor" value="cream-maple"
+                                   data-label="米楓木" data-color="#ddd5c4">
+                            <span class="swatch__chip" style="background:#ddd5c4"></span>
+                            <span class="swatch__label">米楓木</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="mat-cat" data-view="far" data-zone="door">
+                    <div class="mat-cat__head">門片顏色</div>
+                    <div class="mat-cat__swatches">
+                        <label class="swatch">
+                            <input type="radio" name="door_color" value="walnut"
+                                   data-label="胡桃木" data-color="#5c3d2e">
+                            <span class="swatch__chip" style="background:#5c3d2e"></span>
+                            <span class="swatch__label">胡桃木</span>
+                        </label>
+                        <label class="swatch">
+                            <input type="radio" name="door_color" value="star-oak"
+                                   data-label="星際橡木" data-color="#8b7355" checked>
+                            <span class="swatch__chip" style="background:#8b7355"></span>
+                            <span class="swatch__label">星際橡木</span>
+                        </label>
+                        <label class="swatch">
+                            <input type="radio" name="door_color" value="eucalyptus"
+                                   data-label="淺尤加利" data-color="#c4b896">
+                            <span class="swatch__chip" style="background:#c4b896"></span>
+                            <span class="swatch__label">淺尤加利</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="mat-cat" data-view="far" data-zone="wall">
+                    <div class="mat-cat__head">客廳油漆</div>
+                    <div class="mat-cat__swatches">
+                        <label class="swatch">
+                            <input type="radio" name="wall_paint" value="white"
+                                   data-label="白色" data-color="#ffffff" checked>
+                            <span class="swatch__chip" style="background:#fff; border:1px solid #ddd"></span>
+                            <span class="swatch__label">白色</span>
+                        </label>
+                        <label class="swatch">
+                            <input type="radio" name="wall_paint" value="fog-country"
+                                   data-label="霧鄉" data-color="#d5cfc5">
+                            <span class="swatch__chip" style="background:#d5cfc5"></span>
+                            <span class="swatch__label">霧鄉</span>
+                        </label>
+                    </div>
+                </div>
+
+            </div><!-- /.select-col -->
+        </div><!-- /.panel-grid -->
+    </div><!-- /#tab-kitchen -->
+
+
+    <!-- ============================================ -->
+    <!-- TAB: 主浴                                    -->
+    <!-- ============================================ -->
+    <div class="tab-panel" id="tab-bath">
+        <div class="panel-grid">
+
+            <!-- 左：照片預覽 -->
+            <div class="viewer-col">
+                <div class="viewer viewer--bath" id="viewer-bath">
+                    <svg class="photo-view active" id="view-bath"
+                         viewBox="0 0 993 656" preserveAspectRatio="xMidYMid slice">
+                        <image href="../image/原圖/主浴.jpg" width="993" height="656"/>
+                        <!-- 衛浴磁磚（整體風格覆蓋） -->
+                        <polygon data-zone="bath-tiles" class="zone"
+                                 points="0,0 993,0 993,530 0,530"
+                                 fill="#c4a882" opacity="0"/>
+                    </svg>
+                </div>
+                <div class="viewer-notes">
+                    <p><i class="fa-solid fa-circle-info"></i> 磁磚鋪貼方式因每戶浴室開門開窗位置不一，實際依現場施作為主</p>
+                    <p><i class="fa-solid fa-circle-info"></i> 實際磁磚款式依現場選材室為主</p>
+                </div>
+            </div>
+
+            <!-- 右：選材 -->
+            <div class="select-col">
+
+                <div class="mat-cat__intro">
+                    <h3>請選擇主浴地坪及面板</h3>
+                </div>
+
+                <div class="mat-cat" data-zone="bath-tiles">
+                    <div class="mat-cat__head">主浴地坪</div>
+                    <div class="mat-cat__swatches mat-cat__swatches--lg">
+                        <label class="swatch swatch--lg">
+                            <input type="radio" name="bath_style" value="modern-pop"
+                                   data-label="摩登普普風" data-color="#c4a882" checked>
+                            <span class="swatch__chip swatch__chip--lg" style="background:linear-gradient(135deg,#e8d5c4,#c4a882)"></span>
+                            <span class="swatch__label">摩登普普風</span>
+                        </label>
+                        <label class="swatch swatch--lg">
+                            <input type="radio" name="bath_style" value="nordic"
+                                   data-label="北歐風" data-color="#ccc8c0">
+                            <span class="swatch__chip swatch__chip--lg" style="background:linear-gradient(135deg,#e8e4de,#ccc8c0)"></span>
+                            <span class="swatch__label">北歐風</span>
+                        </label>
+                        <label class="swatch swatch--lg">
+                            <input type="radio" name="bath_style" value="japanese"
+                                   data-label="日式禪風" data-color="#a89880">
+                            <span class="swatch__chip swatch__chip--lg" style="background:linear-gradient(135deg,#c9bfa8,#a89880)"></span>
+                            <span class="swatch__label">日式禪風</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="mat-cat" data-zone="">
+                    <div class="mat-cat__head">主浴櫃</div>
+                    <div class="mat-cat__swatches">
+                        <label class="swatch">
+                            <input type="radio" name="bath_door" value="walnut"
+                                   data-label="胡桃木" data-color="#5c3d2e" checked>
+                            <span class="swatch__chip" style="background:#5c3d2e"></span>
+                            <span class="swatch__label">胡桃木</span>
+                        </label>
+                        <label class="swatch">
+                            <input type="radio" name="bath_door" value="star-oak"
+                                   data-label="星際橡木" data-color="#8b7355">
+                            <span class="swatch__chip" style="background:#8b7355"></span>
+                            <span class="swatch__label">星際橡木</span>
+                        </label>
+                        <label class="swatch">
+                            <input type="radio" name="bath_door" value="eucalyptus"
+                                   data-label="淺尤加利" data-color="#c4b896">
+                            <span class="swatch__chip" style="background:#c4b896"></span>
+                            <span class="swatch__label">淺尤加利</span>
+                        </label>
+                    </div>
+                </div>
+
+            </div><!-- /.select-col -->
+        </div><!-- /.panel-grid -->
+    </div><!-- /#tab-bath -->
+
+
+    <!-- ============================================ -->
+    <!-- 選材摘要                                      -->
+    <!-- ============================================ -->
+    <section class="summary-section">
+        <div class="summary-header">
+            <h3><i class="fa-solid fa-clipboard-list"></i> 選材摘要</h3>
+        </div>
+        <div class="summary-grid">
+            <div class="sum-item"><span class="sum-key">電器櫃</span><span class="sum-val" data-sum="appliance_cab">熱帶核桃木</span></div>
+            <div class="sum-item"><span class="sum-key">廚具檯面</span><span class="sum-val" data-sum="countertop">灰點帝雉石</span></div>
+            <div class="sum-item"><span class="sum-key">上櫃面板</span><span class="sum-val" data-sum="upper_cab">熱帶核桃木</span></div>
+            <div class="sum-item"><span class="sum-key">下櫃面板</span><span class="sum-val" data-sum="lower_cab">熱帶核桃木</span></div>
+            <div class="sum-item"><span class="sum-key">地坪</span><span class="sum-val" data-sum="floor">白松木</span></div>
+            <div class="sum-item"><span class="sum-key">門片顏色</span><span class="sum-val" data-sum="door_color">星際橡木</span></div>
+            <div class="sum-item"><span class="sum-key">客廳油漆</span><span class="sum-val" data-sum="wall_paint">白色</span></div>
+            <div class="sum-item"><span class="sum-key">主浴地坪</span><span class="sum-val" data-sum="bath_style">摩登普普風</span></div>
+            <div class="sum-item"><span class="sum-key">主浴櫃</span><span class="sum-val" data-sum="bath_door">胡桃木</span></div>
+        </div>
+        <div class="summary-actions">
+            <button class="btn-submit" id="btn-submit">送出需求進行估價 <i class="fa-solid fa-angle-right"></i></button>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <p>&copy; 2025 客變選樣系統 — 所有內容僅供參考，實際以買賣合約書為準</p>
+    </footer>
+
+</div><!-- /.page-wrapper -->
+
+<script src="../js/room-preview.js"></script>
+</body>
+</html>

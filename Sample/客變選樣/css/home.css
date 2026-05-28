@@ -1,0 +1,693 @@
+/*
+ * home.css — 客變選樣首頁樣式
+ * 設計方向：溫暖奢華 × 極簡建築感
+ */
+
+/* ===================== Reset & Variables ===================== */
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    /* 主色調 */
+    --charcoal: #2c2c2c;
+    --charcoal-light: #3d3d3d;
+    --gold: #c8a96e;
+    --gold-light: #ddc9a0;
+    --gold-dark: #a8894e;
+    --cream: #f5f0eb;
+    --cream-dark: #e8e0d6;
+    --warm-white: #faf8f5;
+    --warm-gray: #8a8580;
+    --soft-border: #e0d8cf;
+
+    /* 字型 */
+    --font-serif: 'Noto Serif TC', 'Times New Roman', serif;
+    --font-sans: 'Noto Sans TC', 'Microsoft JhengHei', sans-serif;
+
+    /* 間距 */
+    --section-padding: 100px 0;
+    --container-max: 1200px;
+    --nav-height: 72px;
+
+    /* 動畫 */
+    --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--font-sans);
+    color: var(--charcoal);
+    background: var(--warm-white);
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+ul { list-style: none; }
+
+/* ===================== Navigation ===================== */
+.top-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    background: rgba(250, 248, 245, 0.85);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--soft-border);
+    height: var(--nav-height);
+    transition: background 0.4s, box-shadow 0.4s;
+}
+
+.top-nav.scrolled {
+    background: rgba(250, 248, 245, 0.98);
+    box-shadow: 0 2px 30px rgba(0, 0, 0, 0.06);
+}
+
+.nav-inner {
+    max-width: var(--container-max);
+    margin: 0 auto;
+    padding: 0 40px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.nav-brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-family: var(--font-serif);
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--charcoal);
+    letter-spacing: 2px;
+}
+
+.nav-brand i {
+    color: var(--gold);
+    font-size: 20px;
+}
+
+.nav-links {
+    display: flex;
+    gap: 36px;
+}
+
+.nav-links a {
+    font-size: 14px;
+    font-weight: 400;
+    color: var(--warm-gray);
+    letter-spacing: 1px;
+    transition: color 0.3s;
+    position: relative;
+    padding-bottom: 4px;
+}
+
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 1.5px;
+    background: var(--gold);
+    transition: width 0.4s var(--ease-out-expo);
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+    color: var(--charcoal);
+}
+
+.nav-links a:hover::after,
+.nav-links a.active::after {
+    width: 100%;
+}
+
+/* ===================== Hero ===================== */
+.hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--charcoal);
+    overflow: hidden;
+}
+
+.hero-overlay {
+    position: absolute;
+    inset: 0;
+    background:
+        radial-gradient(ellipse at 30% 50%, rgba(200, 169, 110, 0.15) 0%, transparent 60%),
+        radial-gradient(ellipse at 70% 30%, rgba(200, 169, 110, 0.08) 0%, transparent 50%),
+        linear-gradient(180deg, rgba(44, 44, 44, 0.3) 0%, rgba(44, 44, 44, 0.9) 100%);
+    z-index: 1;
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+        repeating-linear-gradient(
+            0deg,
+            transparent,
+            transparent 100px,
+            rgba(200, 169, 110, 0.03) 100px,
+            rgba(200, 169, 110, 0.03) 101px
+        ),
+        repeating-linear-gradient(
+            90deg,
+            transparent,
+            transparent 100px,
+            rgba(200, 169, 110, 0.03) 100px,
+            rgba(200, 169, 110, 0.03) 101px
+        );
+    z-index: 0;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    padding: 0 40px;
+    animation: fadeInUp 1.2s var(--ease-out-expo) both;
+}
+
+.hero-eyebrow {
+    font-family: var(--font-sans);
+    font-size: 12px;
+    font-weight: 300;
+    letter-spacing: 8px;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 24px;
+    animation: fadeInUp 1s var(--ease-out-expo) 0.2s both;
+}
+
+.hero-title {
+    font-family: var(--font-serif);
+    font-size: clamp(48px, 8vw, 96px);
+    font-weight: 700;
+    color: var(--warm-white);
+    letter-spacing: 16px;
+    line-height: 1.2;
+    animation: fadeInUp 1s var(--ease-out-expo) 0.35s both;
+}
+
+.hero-divider {
+    width: 60px;
+    height: 1px;
+    background: var(--gold);
+    margin: 32px auto;
+    animation: scaleIn 0.8s var(--ease-out-expo) 0.6s both;
+}
+
+.hero-subtitle {
+    font-family: var(--font-sans);
+    font-size: 15px;
+    font-weight: 300;
+    color: rgba(245, 240, 235, 0.7);
+    line-height: 2;
+    letter-spacing: 2px;
+    animation: fadeInUp 1s var(--ease-out-expo) 0.5s both;
+}
+
+.hero-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 48px;
+    padding: 14px 36px;
+    border: 1px solid rgba(200, 169, 110, 0.4);
+    border-radius: 50px;
+    font-size: 13px;
+    font-weight: 400;
+    letter-spacing: 3px;
+    color: var(--gold);
+    transition: all 0.4s var(--ease-out-expo);
+    animation: fadeInUp 1s var(--ease-out-expo) 0.7s both;
+}
+
+.hero-cta:hover {
+    background: var(--gold);
+    color: var(--charcoal);
+    border-color: var(--gold);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 40px rgba(200, 169, 110, 0.2);
+}
+
+.hero-cta i {
+    animation: bounceDown 2s ease-in-out infinite;
+}
+
+/* Hero 裝飾線 */
+.hero-deco {
+    position: absolute;
+    z-index: 1;
+}
+
+.hero-deco--left {
+    left: 60px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 1px;
+    height: 120px;
+    background: linear-gradient(to bottom, transparent, var(--gold-dark), transparent);
+    opacity: 0.3;
+}
+
+.hero-deco--right {
+    right: 60px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 1px;
+    height: 120px;
+    background: linear-gradient(to bottom, transparent, var(--gold-dark), transparent);
+    opacity: 0.3;
+}
+
+/* ===================== Sections Common ===================== */
+.section-header {
+    text-align: center;
+    margin-bottom: 64px;
+}
+
+.section-eyebrow {
+    font-size: 11px;
+    font-weight: 400;
+    letter-spacing: 6px;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 12px;
+}
+
+.section-title {
+    font-family: var(--font-serif);
+    font-size: clamp(28px, 4vw, 40px);
+    font-weight: 600;
+    letter-spacing: 6px;
+    color: var(--charcoal);
+}
+
+.section-desc {
+    margin-top: 16px;
+    font-size: 14px;
+    color: var(--warm-gray);
+    letter-spacing: 1px;
+}
+
+/* ===================== Room Selection ===================== */
+.room-selection {
+    padding: var(--section-padding);
+    max-width: var(--container-max);
+    margin: 0 auto;
+    padding-left: 40px;
+    padding-right: 40px;
+}
+
+.room-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+}
+
+.room-card {
+    display: block;
+    background: var(--warm-white);
+    border: 1px solid var(--soft-border);
+    border-radius: 12px;
+    overflow: hidden;
+    transition: all 0.5s var(--ease-out-expo);
+    cursor: pointer;
+}
+
+.room-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.08);
+    border-color: var(--gold-light);
+}
+
+.room-card__image {
+    position: relative;
+    height: 240px;
+    background: linear-gradient(135deg, var(--cream) 0%, var(--cream-dark) 100%);
+    overflow: hidden;
+}
+
+.room-card__image-placeholder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    font-size: 64px;
+    color: var(--gold-light);
+    transition: transform 0.6s var(--ease-out-expo);
+}
+
+.room-card:hover .room-card__image-placeholder {
+    transform: scale(1.1);
+}
+
+.room-card__overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(44, 44, 44, 0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.4s;
+}
+
+.room-card:hover .room-card__overlay {
+    opacity: 1;
+}
+
+.room-card__enter {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 28px;
+    border: 1px solid var(--gold);
+    border-radius: 50px;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 2px;
+    color: var(--gold);
+    transition: all 0.3s;
+    transform: translateY(10px);
+}
+
+.room-card:hover .room-card__enter {
+    transform: translateY(0);
+}
+
+.room-card__enter:hover {
+    background: var(--gold);
+    color: var(--charcoal);
+}
+
+.room-card__body {
+    padding: 28px 28px 32px;
+}
+
+.room-card__tag {
+    display: inline-block;
+    padding: 4px 14px;
+    background: var(--cream);
+    color: var(--gold-dark);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 2px;
+    border-radius: 50px;
+    margin-bottom: 12px;
+}
+
+.room-card__title {
+    font-family: var(--font-serif);
+    font-size: 24px;
+    font-weight: 600;
+    letter-spacing: 4px;
+    margin-bottom: 12px;
+}
+
+.room-card__units {
+    font-size: 13px;
+    color: var(--warm-gray);
+    line-height: 1.8;
+}
+
+.room-card__units-label {
+    display: block;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 2px;
+    color: var(--gold-dark);
+    margin-bottom: 2px;
+}
+
+.room-card__features {
+    display: flex;
+    gap: 16px;
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid var(--soft-border);
+}
+
+.room-card__features span {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    color: var(--warm-gray);
+}
+
+.room-card__features i {
+    color: var(--gold);
+    font-size: 13px;
+}
+
+/* ===================== Process Section ===================== */
+.process-section {
+    padding: var(--section-padding);
+    background: var(--cream);
+}
+
+.process-steps {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 16px;
+    max-width: var(--container-max);
+    margin: 0 auto;
+    padding: 0 40px;
+}
+
+.process-step {
+    text-align: center;
+    flex: 1;
+    max-width: 220px;
+}
+
+.process-step__number {
+    font-family: var(--font-serif);
+    font-size: 36px;
+    font-weight: 700;
+    color: var(--gold-light);
+    margin-bottom: 8px;
+    line-height: 1;
+}
+
+.process-step__icon {
+    width: 64px;
+    height: 64px;
+    margin: 0 auto 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--warm-white);
+    border-radius: 50%;
+    font-size: 22px;
+    color: var(--gold-dark);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+}
+
+.process-step h3 {
+    font-family: var(--font-serif);
+    font-size: 16px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    margin-bottom: 8px;
+}
+
+.process-step p {
+    font-size: 13px;
+    color: var(--warm-gray);
+    line-height: 1.8;
+}
+
+.process-step__arrow {
+    display: flex;
+    align-items: center;
+    padding-top: 72px;
+    color: var(--gold-light);
+    font-size: 18px;
+}
+
+/* ===================== Notice Section ===================== */
+.notice-section {
+    padding: 60px 40px 80px;
+    max-width: var(--container-max);
+    margin: 0 auto;
+}
+
+.notice-box {
+    background: var(--warm-white);
+    border: 1px solid var(--soft-border);
+    border-radius: 12px;
+    padding: 36px 40px;
+}
+
+.notice-box h3 {
+    font-family: var(--font-serif);
+    font-size: 16px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    margin-bottom: 16px;
+    color: var(--charcoal);
+}
+
+.notice-box h3 i {
+    color: var(--gold);
+    margin-right: 8px;
+}
+
+.notice-box ul li {
+    position: relative;
+    padding-left: 20px;
+    margin-bottom: 8px;
+    font-size: 13px;
+    color: var(--warm-gray);
+    line-height: 1.8;
+}
+
+.notice-box ul li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 10px;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--gold-light);
+}
+
+/* ===================== Footer ===================== */
+.site-footer {
+    background: var(--charcoal);
+    padding: 40px;
+    text-align: center;
+}
+
+.footer-copyright {
+    font-size: 12px;
+    color: rgba(245, 240, 235, 0.4);
+    letter-spacing: 2px;
+}
+
+/* ===================== Animations ===================== */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes scaleIn {
+    from {
+        opacity: 0;
+        transform: scaleX(0);
+    }
+    to {
+        opacity: 1;
+        transform: scaleX(1);
+    }
+}
+
+@keyframes bounceDown {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(6px); }
+}
+
+/* Scroll reveal */
+.room-card,
+.process-step {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s var(--ease-out-expo), transform 0.8s var(--ease-out-expo);
+}
+
+.room-card.visible,
+.process-step.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.room-card:nth-child(2) { transition-delay: 0.1s; }
+.room-card:nth-child(3) { transition-delay: 0.2s; }
+
+.process-step:nth-child(1) { transition-delay: 0s; }
+.process-step:nth-child(3) { transition-delay: 0.1s; }
+.process-step:nth-child(5) { transition-delay: 0.2s; }
+.process-step:nth-child(7) { transition-delay: 0.3s; }
+
+/* ===================== Responsive ===================== */
+@media (max-width: 960px) {
+    .room-grid {
+        grid-template-columns: 1fr;
+        max-width: 480px;
+        margin: 0 auto;
+    }
+
+    .process-steps {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .process-step__arrow {
+        padding-top: 0;
+        transform: rotate(90deg);
+    }
+
+    .hero-deco { display: none; }
+}
+
+@media (max-width: 600px) {
+    .nav-inner {
+        padding: 0 20px;
+    }
+
+    .nav-links {
+        gap: 20px;
+    }
+
+    .nav-links a {
+        font-size: 12px;
+    }
+
+    .room-selection,
+    .notice-section {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+
+    .notice-box {
+        padding: 24px;
+    }
+
+    .process-steps {
+        padding: 0 20px;
+    }
+}

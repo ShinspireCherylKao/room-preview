@@ -1,0 +1,91 @@
+- generic [active] [ref=e1]:
+  - navigation [ref=e2]:
+    - generic [ref=e3]:
+      - link " 達合莊園" [ref=e4] [cursor=pointer]:
+        - /url: ../index.html
+        - generic [ref=e5]: 
+        - generic [ref=e6]: 達合莊園
+      - generic [ref=e7]: 舒適套房
+      - link " 返回選擇" [ref=e9] [cursor=pointer]:
+        - /url: ../index.html
+        - generic [ref=e10]: 
+        - text: 返回選擇
+  - generic [ref=e11]:
+    - banner [ref=e12]:
+      - heading "達合莊園 — 舒適套房" [level=1] [ref=e13]
+      - paragraph [ref=e14]: 依據您的要求調配格局，並提供建材選配，打造出最適合您的訂製住宅
+      - generic [ref=e15]: 此為網站測試樣版，實際以買賣合約書為準
+    - generic [ref=e16]:
+      - button " 廚房/客餐廳" [ref=e17] [cursor=pointer]:
+        - generic [ref=e18]: 
+        - text: 廚房/客餐廳
+      - button " 主浴" [ref=e19] [cursor=pointer]:
+        - generic [ref=e20]: 
+        - text: 主浴
+    - text:  
+    - generic [ref=e21]:
+      - heading "衛浴" [level=2] [ref=e22]
+      - generic [ref=e23]:
+        - button "主臥衛浴" [ref=e24] [cursor=pointer]
+        - button "次臥衛浴" [ref=e25] [cursor=pointer]
+      - generic [ref=e26]:
+        - generic [ref=e27]:
+          - heading "請選擇主臥衛浴風格及面板" [level=3] [ref=e28]
+          - generic [ref=e29]:
+            - generic [ref=e30]:
+              - generic [ref=e31]: 主臥衛浴風格
+              - combobox "主臥衛浴風格" [ref=e32] [cursor=pointer]:
+                - option "米白石英 EG-1001" [selected]
+                - option "灰雲大理石 EG-1002"
+                - option "深咖啡石 EG-1009"
+            - generic [ref=e33]:
+              - generic [ref=e34]: 主臥浴室門扇
+              - combobox "主臥浴室門扇" [ref=e35] [cursor=pointer]:
+                - option "胡桃木" [selected]
+                - option "星際橡木"
+                - option "淺尤加利"
+          - generic [ref=e36]:
+            - list [ref=e37]:
+              - listitem [ref=e38]: 磁磚鋪貼方式因每戶浴室開門開窗位置不一，實際依現場施作為主
+              - listitem [ref=e39]: 3D僅為空間示意
+            - generic [ref=e40]: 實際磁磚款式依現場選材室為主
+        - generic [ref=e42]:
+          - generic: 此為網站測試樣版，實際以買賣合約書為準
+          - text: 
+    - generic [ref=e43]:
+      - heading " 選材摘要" [level=3] [ref=e45]:
+        - generic [ref=e46]: 
+        - text: 選材摘要
+      - generic [ref=e47]:
+        - generic [ref=e48]:
+          - generic [ref=e49]: 電器櫃
+          - generic [ref=e50]: 熱帶核桃木
+        - generic [ref=e51]:
+          - generic [ref=e52]: 廚具檯面
+          - generic [ref=e53]: 灰點帝雉石
+        - generic [ref=e54]:
+          - generic [ref=e55]: 上櫃面板
+          - generic [ref=e56]: 熱帶核桃木
+        - generic [ref=e57]:
+          - generic [ref=e58]: 下櫃面板
+          - generic [ref=e59]: 熱帶核桃木
+        - generic [ref=e60]:
+          - generic [ref=e61]: 地坪
+          - generic [ref=e62]: 白松木
+        - generic [ref=e63]:
+          - generic [ref=e64]: 門片顏色
+          - generic [ref=e65]: 星際橡木
+        - generic [ref=e66]:
+          - generic [ref=e67]: 客廳油漆
+          - generic [ref=e68]: 白色
+        - generic [ref=e69]:
+          - generic [ref=e70]: 主臥衛浴風格
+          - generic [ref=e71]: 米白石英 EG-1001
+        - generic [ref=e72]:
+          - generic [ref=e73]: 主臥浴室門扇
+          - generic [ref=e74]: 胡桃木
+      - button "送出需求進行估價 " [ref=e76] [cursor=pointer]:
+        - text: 送出需求進行估價
+        - generic [ref=e77]: 
+    - contentinfo [ref=e78]:
+      - paragraph [ref=e79]: © 2025 客變選樣系統 — 所有內容僅供參考，實際以買賣合約書為準

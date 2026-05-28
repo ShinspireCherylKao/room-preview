@@ -1,0 +1,494 @@
+"""
+完整重寫 preview02.html：
+- 主浴 + 廚房都改回 swatch 點選樣式
+- 圖左 / 選單右
+- 廚房移除 地坪 + 門片
+- 米白主題（同 room-preview.css 預設樣式）
+"""
+from pathlib import Path
+import re
+
+HTML = Path(__file__).resolve().parent.parent / "room" / "preview02.html"
+content = HTML.read_text(encoding="utf-8")
+
+# ============================================================
+# 1. 新 <style> 區塊
+# ============================================================
+NEW_STYLE = '''    <style>
+        /* ============================================================
+         * 主浴 — 圖左、swatch 卡片右（同廚房結構）
+         * 沿用 room-preview.css 的米白系列，不再覆蓋深色
+         * ============================================================ */
+        .bath-stage {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 993 / 656;
+            border-radius: var(--radius);
+            overflow: hidden;
+            background-color: #e0dbd5;
+            background-position: center;
+            background-size: cover;
+            background-repeat: no-repeat;
+            box-shadow: 0 4px 24px rgba(0,0,0,0.10);
+            transition: background-image 0.25s var(--ease);
+        }
+        .bath-stage__missing {
+            position: absolute;
+            inset: 0;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            color: var(--warm-gray);
+            font-size: 13px;
+            letter-spacing: 1.5px;
+            text-align: center;
+            padding: 24px;
+            background: linear-gradient(135deg, #f5f0eb, #e8e0d6);
+            z-index: 2;
+        }
+        .bath-stage.missing .bath-stage__missing { display: flex; }
+        .bath-stage__missing i {
+            font-size: 32px;
+            color: var(--gold);
+            margin-bottom: 12px;
+        }
+        .bath-stage__missing code {
+            display: inline-block;
+            background: rgba(200,169,110,0.12);
+            color: var(--gold-dark);
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            margin-top: 8px;
+            font-family: var(--font-mono);
+        }
+        .bath-disclaimer {
+            font-size: 11px;
+            color: var(--warm-gray);
+            margin-top: 14px;
+            letter-spacing: 0.5px;
+        }
+        .bath-disclaimer i { color: var(--gold-dark); margin-right: 4px; }
+
+        /* ============================================================
+         * 廚房/客餐廳 — 區塊色彩 PNG 圖層
+         * 預合成 RGBA overlay：base × tint，alpha = mask
+         * ============================================================ */
+        .viewer .zone-overlays {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            display: none;
+        }
+        .viewer #view-near.active ~ .zone-overlays-near,
+        .viewer #view-far.active ~ .zone-overlays-far {
+            display: block;
+        }
+        .zone-layer {
+            position: absolute;
+            inset: 0;
+            background-image: var(--src, none);
+            background-position: center;
+            background-size: cover;
+            background-repeat: no-repeat;
+            transition: background-image 0.25s var(--ease), opacity 0.25s;
+        }
+        .zone-layer:not([style*="--src"]) { opacity: 0; }
+    </style>'''
+
+# Replace entire <style>...</style>
+content = re.sub(
+    r'<style>.*?</style>',
+    NEW_STYLE,
+    content,
+    count=1,
+    flags=re.DOTALL,
+)
+
+# ============================================================
+# 2. 重寫主浴 tab — swatch + 圖左 + 選單右
+# ============================================================
+NEW_BATH = '''<div class="tab-panel active" id="tab-bath">
+        <div class="panel-grid">
+
+            <!-- 左：照片預覽 -->
+            <div class="viewer-col">
+                <div class="bath-stage" id="bath-stage"
+                     style="background-image:url('../image/bath-renders/t1-1.jpg');">
+                    <div class="bath-stage__missing">
+                        <i class="fa-solid fa-image"></i>
+                        <div>此組合的渲染圖尚未提供</div>
+                        <code id="bath-missing-file">t?-?.jpg</code>
+                    </div>
+                </div>
+                <p class="viewer-note">
+                    <i class="fa-solid fa-circle-info"></i>
+                    圖片僅為空間示意，實際以現場選材室為主
+                </p>
+            </div>
+
+            <!-- 右：選材 swatch 卡片 -->
+            <div class="select-col">
+
+                <!-- 主浴地坪 -->
+                <div class="mat-cat" data-bath-axis="floor">
+                    <div class="mat-cat__head">主浴地坪</div>
+                    <div class="mat-cat__swatches">
+                        <label class="swatch">
+                            <input type="radio" name="bathFloor" value="1"
+                                   data-label="米白石英 EG-1001" checked>
+                            <span class="swatch__chip" style="background:url('../image/素材照/石英磚/EG-1001.jpg') center/cover"></span>
+                            <span class="swatch__label">米白 EG-1001</span>
+                        </label>
+                        <label class="swatch">
+                            <input type="radio" name="bathFloor" value="2"
+                                   data-label="灰雲大理石 EG-1002">
+                            <span class="swatch__chip" style="background:url('../image/素材照/石英磚/EG-1002.jpg') center/cover"></span>
+                            <span class="swatch__label">灰雲 EG-1002</span>
+                        </label>
+                        <label class="swatch">
+                            <input type="radio" name="bathFloor" value="3"
+                                   data-label="深咖啡石 EG-1009">
+                            <span class="swatch__chip" style="background:url('../image/素材照/石英磚/EG-1009.jpg') center/cover"></span>
+                            <span class="swatch__label">咖啡 EG-1009</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- 主浴門片 -->
+                <div class="mat-cat" data-bath-axis="door">
+                    <div class="mat-cat__head">主浴門片</div>
+                    <div class="mat-cat__swatches">
+                        <label class="swatch">
+                            <input type="radio" name="bathDoor" value="1"
+                                   data-label="胡桃木" checked>
+                            <span class="swatch__chip" style="background:#5c3d2e"></span>
+                            <span class="swatch__label">胡桃木</span>
+                        </label>
+                        <label class="swatch">
+                            <input type="radio" name="bathDoor" value="2"
+                                   data-label="星際橡木">
+                            <span class="swatch__chip" style="background:#8b7355"></span>
+                            <span class="swatch__label">星際橡木</span>
+                        </label>
+                        <label class="swatch">
+                            <input type="radio" name="bathDoor" value="3"
+                                   data-label="淺尤加利">
+                            <span class="swatch__chip" style="background:#c4b896"></span>
+                            <span class="swatch__label">淺尤加利</span>
+                        </label>
+                    </div>
+                </div>
+
+                <p class="bath-disclaimer">
+                    <i class="fa-solid fa-circle-info"></i>
+                    磁磚鋪貼方式因每戶浴室開門開窗位置不一，實際依現場施作為主
+                </p>
+            </div><!-- /.select-col -->
+        </div><!-- /.panel-grid -->
+    </div><!-- /#tab-bath -->'''
+
+# Replace bath tab
+start = '<div class="tab-panel active" id="tab-bath">'
+end = '</div><!-- /#tab-bath -->'
+si = content.find(start)
+ei = content.find(end) + len(end)
+content = content[:si] + NEW_BATH + content[ei:]
+
+# ============================================================
+# 3. 重寫廚房 tab — swatch 點選 + 移除 地坪/門片
+# ============================================================
+NEW_KITCHEN = '''<div class="tab-panel" id="tab-kitchen">
+        <div class="panel-grid">
+
+            <!-- 左：照片預覽 -->
+            <div class="viewer-col">
+                <div class="viewer" id="viewer-kitchen">
+                    <!-- 近景：廚房 -->
+                    <svg class="photo-view active" id="view-near"
+                         viewBox="0 0 822 732" preserveAspectRatio="xMidYMid slice">
+                        <image href="../image/原圖/廚房.jpg" width="822" height="732"/>
+                    </svg>
+
+                    <!-- 近景 zone overlays（預合成 RGBA PNG） -->
+                    <div class="zone-overlays zone-overlays-near">
+                        <div class="zone-layer" data-overlay-zone="appliance-cab"></div>
+                        <div class="zone-layer" data-overlay-zone="wall"></div>
+                        <div class="zone-layer" data-overlay-zone="countertop"></div>
+                        <div class="zone-layer" data-overlay-zone="upper-cab"></div>
+                        <div class="zone-layer" data-overlay-zone="lower-cab"></div>
+                    </div>
+
+                    <!-- 遠景：客餐廳（保留以維持原近景/遠景切換按鈕） -->
+                    <svg class="photo-view" id="view-far"
+                         viewBox="0 0 998 812" preserveAspectRatio="xMidYMid slice">
+                        <image href="../image/原圖/客餐廳.jpg" width="998" height="812"/>
+                    </svg>
+
+                    <!-- 近景/遠景指示 -->
+                    <div class="view-indicator">
+                        <button class="view-indicator__btn active" data-view="near">
+                            <i class="fa-solid fa-magnifying-glass-plus"></i> 近景
+                        </button>
+                        <button class="view-indicator__btn" data-view="far">
+                            <i class="fa-solid fa-magnifying-glass-minus"></i> 遠景
+                        </button>
+                    </div>
+                </div>
+                <p class="viewer-note">
+                    <i class="fa-solid fa-circle-info"></i>
+                    圖片僅為空間示意，實際以現場選材室為主
+                </p>
+            </div>
+
+            <!-- 右：選材 swatch 卡片 -->
+            <div class="select-col">
+
+                <div class="mat-cat" data-view="near" data-zone="appliance-cab">
+                    <div class="mat-cat__head">電器櫃</div>
+                    <div class="mat-cat__swatches">
+                        <label class="swatch">
+                            <input type="radio" name="appliance_cab" value="tropical-walnut"
+                                   data-label="熱帶核桃木" data-color="#6b4c3b" checked>
+                            <span class="swatch__chip" style="background:#6b4c3b"></span>
+                            <span class="swatch__label">熱帶核桃木</span>
+                        </label>
+                        <label class="swatch">
+                            <input type="radio" name="appliance_cab" value="oak-white"
+                                   data-label="白橡木" data-color="#d4c5a9">
+                            <span class="swatch__chip" style="background:#d4c5a9"></span>
+                            <span class="swatch__label">白橡木</span>
+                        </label>
+                        <label class="swatch">
+                            <input type="radio" name="appliance_cab" value="gray-oak"
+                                   data-label="灰橡木" data-color="#9e9589">
+                            <span class="swatch__chip" style="background:#9e9589"></span>
+                            <span class="swatch__label">灰橡木</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="mat-cat" data-view="near" data-zone="countertop">
+                    <div class="mat-cat__head">廚具檯面</div>
+                    <div class="mat-cat__swatches">
+                        <label class="swatch">
+                            <input type="radio" name="countertop" value="gray-pheasant"
+                                   data-label="灰點帝雉石" data-color="#8a8078" checked>
+                            <span class="swatch__chip" style="background:linear-gradient(135deg,#b0a89e,#8a8078)"></span>
+                            <span class="swatch__label">灰點帝雉石</span>
+                        </label>
+                        <label class="swatch">
+                            <input type="radio" name="countertop" value="snow-white"
+                                   data-label="雪白石" data-color="#e8e0d6">
+                            <span class="swatch__chip" style="background:linear-gradient(135deg,#f0ede8,#d8d2c8)"></span>
+                            <span class="swatch__label">雪白石</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="mat-cat" data-view="near" data-zone="upper-cab">
+                    <div class="mat-cat__head">上櫃面板</div>
+                    <div class="mat-cat__swatches">
+                        <label class="swatch">
+                            <input type="radio" name="upper_cab" value="tropical-walnut"
+                                   data-label="熱帶核桃木" data-color="#6b4c3b" checked>
+                            <span class="swatch__chip" style="background:#6b4c3b"></span>
+                            <span class="swatch__label">熱帶核桃木</span>
+                        </label>
+                        <label class="swatch">
+                            <input type="radio" name="upper_cab" value="oak-white"
+                                   data-label="白橡木" data-color="#d4c5a9">
+                            <span class="swatch__chip" style="background:#d4c5a9"></span>
+                            <span class="swatch__label">白橡木</span>
+                        </label>
+                        <label class="swatch">
+                            <input type="radio" name="upper_cab" value="gray-oak"
+                                   data-label="灰橡木" data-color="#9e9589">
+                            <span class="swatch__chip" style="background:#9e9589"></span>
+                            <span class="swatch__label">灰橡木</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="mat-cat" data-view="near" data-zone="lower-cab">
+                    <div class="mat-cat__head">下櫃面板</div>
+                    <div class="mat-cat__swatches">
+                        <label class="swatch">
+                            <input type="radio" name="lower_cab" value="tropical-walnut"
+                                   data-label="熱帶核桃木" data-color="#6b4c3b" checked>
+                            <span class="swatch__chip" style="background:#6b4c3b"></span>
+                            <span class="swatch__label">熱帶核桃木</span>
+                        </label>
+                        <label class="swatch">
+                            <input type="radio" name="lower_cab" value="oak-white"
+                                   data-label="白橡木" data-color="#d4c5a9">
+                            <span class="swatch__chip" style="background:#d4c5a9"></span>
+                            <span class="swatch__label">白橡木</span>
+                        </label>
+                        <label class="swatch">
+                            <input type="radio" name="lower_cab" value="gray-oak"
+                                   data-label="灰橡木" data-color="#9e9589">
+                            <span class="swatch__chip" style="background:#9e9589"></span>
+                            <span class="swatch__label">灰橡木</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="mat-cat" data-view="near" data-zone="wall">
+                    <div class="mat-cat__head">客廳油漆</div>
+                    <div class="mat-cat__swatches">
+                        <label class="swatch">
+                            <input type="radio" name="wall_paint" value="white"
+                                   data-label="白色" data-color="#ffffff" checked>
+                            <span class="swatch__chip" style="background:#fff; border:1px solid #ddd"></span>
+                            <span class="swatch__label">白色</span>
+                        </label>
+                        <label class="swatch">
+                            <input type="radio" name="wall_paint" value="fog-country"
+                                   data-label="霧鄉" data-color="#d5cfc5">
+                            <span class="swatch__chip" style="background:#d5cfc5"></span>
+                            <span class="swatch__label">霧鄉</span>
+                        </label>
+                    </div>
+                </div>
+
+            </div><!-- /.select-col -->
+        </div><!-- /.panel-grid -->
+    </div><!-- /#tab-kitchen -->'''
+
+start = '<div class="tab-panel" id="tab-kitchen">'
+end = '</div><!-- /#tab-kitchen -->'
+si = content.find(start)
+ei = content.find(end) + len(end)
+content = content[:si] + NEW_KITCHEN + content[ei:]
+
+# ============================================================
+# 4. 更新 JS — 廚房改回監聽 radio
+# ============================================================
+NEW_KITCHEN_JS = '''    /* ============================================================
+     * 廚房 / 客餐廳 — zone overlay 預合成 PNG 切換（swatch 版）
+     * 監聽 #tab-kitchen 內所有 radio change
+     * ============================================================ */
+    document.addEventListener('DOMContentLoaded', () => {
+        const kitchen = document.getElementById('tab-kitchen');
+        if (!kitchen) return;
+
+        const OVL_DIR = '../image/kitchen-overlays/';
+        const ZONE_VIEW = {
+            'appliance-cab': 'near',
+            'countertop':    'near',
+            'upper-cab':     'near',
+            'lower-cab':     'near',
+            'wall':          'near',
+        };
+
+        // 記住每個 zone 預設 value
+        const defaults = {};
+        kitchen.querySelectorAll('.mat-cat[data-zone]').forEach(cat => {
+            const zone = cat.dataset.zone;
+            const checked = cat.querySelector('input[type="radio"]:checked');
+            if (zone && checked) defaults[zone] = checked.value;
+        });
+
+        function applyOverlay(zone, value) {
+            const layer = kitchen.querySelector(`.zone-layer[data-overlay-zone="${zone}"]`);
+            if (!layer) return;
+            if (value === defaults[zone]) {
+                layer.style.removeProperty('--src');
+                return;
+            }
+            const view = ZONE_VIEW[zone];
+            if (!view) return;
+            const url = `${OVL_DIR}${view}-${zone}-${value}.png`;
+            layer.style.setProperty('--src', `url('${url}')`);
+        }
+
+        kitchen.querySelectorAll('input[type="radio"]').forEach(r => {
+            r.addEventListener('change', () => {
+                const cat = r.closest('.mat-cat');
+                if (cat) applyOverlay(cat.dataset.zone, r.value);
+            });
+        });
+    });'''
+
+NEW_BATH_JS = '''    /* ============================================================
+     * 主浴 — 預渲染組合圖切換（swatch 版）
+     * 監聽 input[name=bathFloor/bathDoor] 變化
+     * ============================================================ */
+    document.addEventListener('DOMContentLoaded', () => {
+        const RENDER_DIR = '../image/bath-renders/';
+        const stage = document.getElementById('bath-stage');
+        const missingFileEl = document.getElementById('bath-missing-file');
+        if (!stage) return;
+
+        function getCheckedValue(name) {
+            const r = document.querySelector(`input[name="${name}"]:checked`);
+            return r ? r.value : '1';
+        }
+        function getCheckedLabel(name) {
+            const r = document.querySelector(`input[name="${name}"]:checked`);
+            return r ? (r.dataset.label || r.value) : '';
+        }
+
+        const existCache = new Map();
+        function checkLoad(url) {
+            if (existCache.has(url)) return existCache.get(url);
+            const p = new Promise(resolve => {
+                const img = new Image();
+                img.onload = () => resolve(true);
+                img.onerror = () => resolve(false);
+                img.src = url;
+            });
+            existCache.set(url, p);
+            return p;
+        }
+
+        function applyCombo() {
+            const f = getCheckedValue('bathFloor');
+            const d = getCheckedValue('bathDoor');
+            const filename = `t${f}-${d}.jpg`;
+            const url = RENDER_DIR + filename;
+
+            stage.classList.remove('missing');
+            stage.style.backgroundImage = `url('${url}')`;
+
+            checkLoad(url).then(ok => {
+                if (!ok && stage.style.backgroundImage.includes(filename)) {
+                    stage.classList.add('missing');
+                    stage.style.backgroundImage = 'none';
+                    if (missingFileEl) missingFileEl.textContent = filename;
+                }
+            });
+
+            updateSummary();
+        }
+
+        function updateSummary() {
+            [['bathFloor', getCheckedLabel('bathFloor')],
+             ['bathDoor',  getCheckedLabel('bathDoor')]].forEach(([k, label]) => {
+                const sumEl = document.querySelector(`.sum-val[data-sum="${k}"]`);
+                if (sumEl && label && sumEl.textContent !== label) {
+                    sumEl.textContent = label;
+                    sumEl.classList.add('just-changed');
+                    setTimeout(() => sumEl.classList.remove('just-changed'), 800);
+                }
+            });
+        }
+
+        document.querySelectorAll('input[name="bathFloor"], input[name="bathDoor"]')
+            .forEach(r => r.addEventListener('change', applyCombo));
+
+        applyCombo();
+    });'''
+
+# Replace JS section after <script src="../js/room-preview.js"></script>
+JS_BLOCK_PATTERN = re.compile(
+    r'(<script src="../js/room-preview\.js"></script>\s*<script>).*?(</script>\s*</body>)',
+    re.DOTALL,
+)
+new_js_block = '\n' + NEW_KITCHEN_JS + '\n\n' + NEW_BATH_JS + '\n'
+content = JS_BLOCK_PATTERN.sub(rf'\1{new_js_block}\2', content)
+
+HTML.write_text(content, encoding="utf-8")
+print(f"Done. Final length: {len(content)}")

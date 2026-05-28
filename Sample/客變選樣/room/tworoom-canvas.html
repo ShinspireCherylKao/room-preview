@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>舒適套房 — Canvas 材質預覽</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;500;600;700&family=Noto+Sans+TC:wght@300;400;500;700&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,500;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/room-canvas.css">
+</head>
+<body>
+
+<!-- ====== 導覽列 ====== -->
+<nav class="top-nav">
+    <div class="nav-inner">
+        <a href="../index.html" class="nav-brand">
+            <i class="fa-solid fa-building"></i>
+            <span>職人訂製</span>
+        </a>
+        <div class="nav-center">
+            <span class="nav-room-label">舒適套房 — Canvas 材質預覽</span>
+        </div>
+        <div class="nav-right">
+            <a href="tworoom-preview.html" class="btn-back"><i class="fa-solid fa-arrow-left"></i> SVG 版本</a>
+        </div>
+    </div>
+</nav>
+
+<!-- ====== 頁面主體 ====== -->
+<div class="page-wrapper">
+
+    <!-- 頁首 -->
+    <header class="page-hero">
+        <h1 class="page-hero__title">職人訂製 — 舒適套房</h1>
+        <p class="page-hero__desc">使用 Canvas + SAM 遮罩即時合成材質，選擇材質貼圖或顏色立即預覽</p>
+        <span class="page-hero__badge"><i class="fa-solid fa-wand-magic-sparkles"></i> Canvas 即時合成版</span>
+    </header>
+
+    <!-- 場景 Tabs -->
+    <div class="section-tabs">
+        <button class="section-tab active" data-scene="廚房"><i class="fa-solid fa-kitchen-set"></i> 廚房</button>
+        <button class="section-tab" data-scene="客餐廳"><i class="fa-solid fa-couch"></i> 客餐廳</button>
+        <button class="section-tab" data-scene="主浴"><i class="fa-solid fa-shower"></i> 主浴</button>
+    </div>
+
+    <!-- 主面板 -->
+    <div class="panel-grid">
+
+        <!-- 左：Canvas 預覽 -->
+        <div class="viewer-col">
+            <div class="viewer" id="viewer-main">
+                <canvas id="preview-canvas"></canvas>
+                <div class="loading-overlay" id="loading-overlay">
+                    <div class="spinner"></div>
+                    <span>載入場景中...</span>
+                </div>
+            </div>
+            <p class="viewer-note">
+                <i class="fa-solid fa-circle-info"></i>
+                圖片僅為空間示意，實際以現場選材室為主
+            </p>
+        </div>
+
+        <!-- 右：選材面板 -->
+        <div class="select-col" id="select-panel">
+            <!-- 由 JS 動態產生 -->
+        </div>
+
+    </div>
+
+    <!-- 選材摘要 -->
+    <section class="summary-section">
+        <div class="summary-header">
+            <h3><i class="fa-solid fa-clipboard-list"></i> 選材摘要</h3>
+        </div>
+        <div class="summary-grid" id="summary-grid">
+            <!-- 由 JS 動態產生 -->
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <p>&copy; 2025 客變選樣系統 — 所有內容僅供參考，實際以買賣合約書為準</p>
+    </footer>
+
+</div>
+
+<script src="../js/texture-compositor.js"></script>
+<script src="../js/room-canvas.js"></script>
+</body>
+</html>

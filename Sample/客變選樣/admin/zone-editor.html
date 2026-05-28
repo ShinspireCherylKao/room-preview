@@ -1,0 +1,1208 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>套圖區域編輯器 — 後台工具</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+:root {
+    --bg: #1a1a2e;
+    --bg2: #16213e;
+    --bg3: #0f3460;
+    --accent: #e94560;
+    --accent2: #f39c12;
+    --text: #eee;
+    --text2: #aab;
+    --border: #2a2a4a;
+    --radius: 8px;
+    --font: 'Noto Sans TC', 'DM Sans', sans-serif;
+}
+html, body { height: 100%; overflow: hidden; }
+body {
+    font-family: var(--font);
+    background: var(--bg);
+    color: var(--text);
+    display: flex; flex-direction: column;
+}
+
+/* ===== Top Bar ===== */
+.topbar {
+    display: flex; align-items: center; gap: 16px;
+    padding: 10px 20px;
+    background: var(--bg2);
+    border-bottom: 1px solid var(--border);
+    flex-shrink: 0;
+    z-index: 100;
+}
+.topbar h1 {
+    font-size: 15px; font-weight: 600; letter-spacing: 2px;
+    color: var(--accent);
+    margin-right: auto;
+}
+.topbar h1 i { margin-right: 8px; }
+
+.tb-group { display: flex; align-items: center; gap: 6px; }
+.tb-label {
+    font-size: 11px; color: var(--text2); letter-spacing: 0.5px;
+    white-space: nowrap;
+}
+
+.tb-btn {
+    padding: 6px 14px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background: transparent;
+    color: var(--text);
+    font-size: 12px; font-weight: 500;
+    cursor: pointer;
+    display: inline-flex; align-items: center; gap: 6px;
+    transition: all 0.2s;
+}
+.tb-btn:hover { border-color: var(--accent); color: var(--accent); }
+.tb-btn--primary {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: #fff;
+}
+.tb-btn--primary:hover { background: #c73a50; }
+.tb-btn--warn {
+    background: var(--accent2);
+    border-color: var(--accent2);
+    color: #111;
+}
+.tb-btn--warn:hover { opacity: 0.85; }
+
+.tb-select {
+    padding: 5px 10px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background: var(--bg);
+    color: var(--text);
+    font-size: 12px;
+}
+
+/* ===== Main Layout ===== */
+.main-layout {
+    flex: 1;
+    display: flex;
+    overflow: hidden;
+}
+
+/* ===== Canvas Area ===== */
+.canvas-area {
+    flex: 1;
+    position: relative;
+    overflow: auto;
+    background:
+        repeating-conic-gradient(#222 0% 25%, #2a2a2a 0% 50%) 50% / 20px 20px;
+    cursor: crosshair;
+}
+
+.canvas-area.mode-select { cursor: default; }
+.canvas-area.mode-move { cursor: grab; }
+
+.canvas-wrap {
+    position: relative;
+    display: inline-block;
+    transform-origin: 0 0;
+}
+
+.canvas-wrap img {
+    display: block;
+    max-width: none;
+    user-select: none;
+    -webkit-user-drag: none;
+}
+
+/* SVG Overlay */
+.svg-overlay {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    pointer-events: none;
+}
+.svg-overlay polygon,
+.svg-overlay path {
+    pointer-events: visiblePainted;
+    cursor: pointer;
+    transition: opacity 0.15s;
+}
+.svg-overlay polygon:hover,
+.svg-overlay path:hover { opacity: 0.6 !important; }
+.svg-overlay polygon.selected,
+.svg-overlay path.selected {
+    stroke: var(--accent) !important;
+    stroke-width: 3 !important;
+    stroke-dasharray: 6 3;
+}
+
+/* Anchor Points */
+.anchor-point {
+    position: absolute;
+    width: 10px; height: 10px;
+    background: var(--accent);
+    border: 2px solid #fff;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    cursor: move;
+    z-index: 50;
+    pointer-events: auto;
+    box-shadow: 0 0 6px rgba(233,69,96,0.5);
+}
+.anchor-point:hover {
+    transform: translate(-50%, -50%) scale(1.4);
+}
+.anchor-point.first-point {
+    background: #2ecc71;
+    box-shadow: 0 0 8px rgba(46,204,113,0.6);
+}
+
+/* Drawing line preview */
+.draw-line {
+    stroke: var(--accent);
+    stroke-width: 2;
+    stroke-dasharray: 5 3;
+    fill: none;
+    pointer-events: none;
+}
+
+/* ===== Coord Display ===== */
+.coord-display {
+    position: fixed;
+    bottom: 16px; left: 50%;
+    transform: translateX(-50%);
+    padding: 6px 16px;
+    background: rgba(0,0,0,0.8);
+    backdrop-filter: blur(8px);
+    border-radius: 20px;
+    font-size: 12px; font-weight: 500;
+    color: var(--text2);
+    z-index: 200;
+    letter-spacing: 1px;
+    font-family: 'DM Sans', monospace;
+}
+.coord-display span { color: var(--accent); margin: 0 2px; }
+
+/* ===== Side Panel ===== */
+.side-panel {
+    width: 340px;
+    background: var(--bg2);
+    border-left: 1px solid var(--border);
+    display: flex; flex-direction: column;
+    flex-shrink: 0;
+    overflow: hidden;
+}
+
+.sp-header {
+    padding: 14px 16px;
+    border-bottom: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: space-between;
+}
+.sp-header h2 {
+    font-size: 13px; font-weight: 600;
+    letter-spacing: 1px;
+}
+.sp-header .badge {
+    padding: 2px 10px;
+    background: var(--bg3);
+    border-radius: 10px;
+    font-size: 11px; color: var(--text2);
+}
+
+.sp-scroll {
+    flex: 1;
+    overflow-y: auto;
+    padding: 12px;
+}
+.sp-scroll::-webkit-scrollbar { width: 4px; }
+.sp-scroll::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+
+/* Zone Card */
+.zone-card {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    margin-bottom: 8px;
+    overflow: hidden;
+    transition: border-color 0.2s;
+}
+.zone-card.selected { border-color: var(--accent); }
+
+.zone-card__header {
+    display: flex; align-items: center; gap: 8px;
+    padding: 8px 12px;
+    cursor: pointer;
+    transition: background 0.15s;
+}
+.zone-card__header:hover { background: rgba(255,255,255,0.03); }
+
+.zone-card__color {
+    width: 14px; height: 14px;
+    border-radius: 3px;
+    border: 1px solid rgba(255,255,255,0.15);
+    flex-shrink: 0;
+}
+.zone-card__name {
+    flex: 1;
+    font-size: 12px; font-weight: 500;
+}
+.zone-card__pts {
+    font-size: 10px; color: var(--text2);
+}
+.zone-card__actions {
+    display: flex; gap: 4px;
+}
+.zone-card__actions button {
+    padding: 2px 6px;
+    background: none;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    color: var(--text2);
+    font-size: 10px;
+    cursor: pointer;
+    transition: all 0.15s;
+}
+.zone-card__actions button:hover { border-color: var(--accent); color: var(--accent); }
+.zone-card__actions .btn-del:hover { border-color: #e74c3c; color: #e74c3c; }
+.zone-card__actions .btn-redraw { color: #2ecc71; }
+.zone-card__actions .btn-redraw:hover { border-color: #2ecc71; color: #2ecc71; }
+
+/* Pending badge */
+.zone-card__pending {
+    font-size: 10px;
+    padding: 1px 8px;
+    background: var(--accent2);
+    color: #111;
+    border-radius: 8px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    animation: pendingPulse 2s ease-in-out infinite;
+}
+@keyframes pendingPulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.6; }
+}
+
+/* Zone Edit Body */
+.zone-card__body {
+    display: none;
+    padding: 10px 12px;
+    border-top: 1px solid var(--border);
+    background: rgba(0,0,0,0.15);
+}
+.zone-card.expanded .zone-card__body { display: block; }
+
+.field-row {
+    display: flex; align-items: center; gap: 8px;
+    margin-bottom: 8px;
+}
+.field-row label {
+    font-size: 11px; color: var(--text2);
+    width: 60px; flex-shrink: 0;
+    text-align: right;
+}
+.field-row input[type="text"],
+.field-row select {
+    flex: 1;
+    padding: 4px 8px;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    color: var(--text);
+    font-size: 12px;
+}
+.field-row input[type="range"] { flex: 1; }
+.field-row .range-val {
+    font-size: 11px; color: var(--accent);
+    width: 32px; text-align: center;
+    font-family: 'DM Sans', monospace;
+}
+.field-row input[type="color"] {
+    width: 30px; height: 24px;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    background: none;
+    cursor: pointer;
+}
+
+/* Blend Mode Preview */
+.blend-preview {
+    margin-top: 8px;
+    padding: 8px;
+    background: var(--bg);
+    border-radius: 4px;
+    font-size: 10px; color: var(--text2);
+}
+.blend-modes {
+    display: flex; flex-wrap: wrap; gap: 4px; margin-top: 6px;
+}
+.blend-mode-btn {
+    padding: 3px 8px;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    background: none;
+    color: var(--text2);
+    font-size: 10px;
+    cursor: pointer;
+    transition: all 0.15s;
+}
+.blend-mode-btn:hover { border-color: var(--accent2); color: var(--accent2); }
+.blend-mode-btn.active { background: var(--accent2); color: #111; border-color: var(--accent2); }
+
+/* ===== Export Panel ===== */
+.export-panel {
+    border-top: 1px solid var(--border);
+    padding: 12px;
+    flex-shrink: 0;
+}
+.export-panel textarea {
+    width: 100%;
+    height: 80px;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    color: var(--text);
+    font-family: 'DM Sans', monospace;
+    font-size: 11px;
+    padding: 8px;
+    resize: vertical;
+}
+.export-btns {
+    display: flex; gap: 6px; margin-top: 8px;
+}
+
+/* Status / hint */
+.status-bar {
+    position: fixed;
+    top: 56px; left: 50%;
+    transform: translateX(-50%);
+    padding: 8px 20px;
+    background: rgba(233,69,96,0.9);
+    backdrop-filter: blur(8px);
+    border-radius: 0 0 10px 10px;
+    font-size: 12px; font-weight: 500;
+    color: #fff;
+    z-index: 200;
+    display: none;
+    letter-spacing: 1px;
+}
+.status-bar.visible { display: block; animation: slideDown 0.3s ease; }
+
+@keyframes slideDown {
+    from { transform: translateX(-50%) translateY(-100%); }
+    to { transform: translateX(-50%) translateY(0); }
+}
+
+/* Toast */
+.toast {
+    position: fixed;
+    bottom: 60px; right: 20px;
+    padding: 10px 20px;
+    background: #2ecc71;
+    color: #fff;
+    border-radius: var(--radius);
+    font-size: 12px; font-weight: 500;
+    z-index: 999;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: all 0.3s;
+    pointer-events: none;
+}
+.toast.show { opacity: 1; transform: translateY(0); }
+</style>
+</head>
+<body>
+
+<!-- ===== Top Bar ===== -->
+<div class="topbar">
+    <h1><i class="fa-solid fa-vector-square"></i> 套圖區域編輯器</h1>
+
+    <div class="tb-group">
+        <span class="tb-label">底圖：</span>
+        <select id="imageSelect" class="tb-select">
+            <option value="../image/廚房.jpg">廚房（近景）</option>
+            <option value="../image/客餐廳.jpg">客餐廳（遠景）</option>
+            <option value="../image/主浴.jpg">主浴</option>
+        </select>
+        <button class="tb-btn" id="btnUpload"><i class="fa-solid fa-upload"></i> 上傳圖片</button>
+        <input type="file" id="fileUpload" accept="image/*" style="display:none">
+    </div>
+
+    <div class="tb-group">
+        <span class="tb-label">工具：</span>
+        <button class="tb-btn tb-btn--primary" id="btnDraw" title="多邊形繪製 (D)">
+            <i class="fa-solid fa-draw-polygon"></i> 繪製
+        </button>
+        <button class="tb-btn" id="btnSelect" title="選取移動 (V)">
+            <i class="fa-solid fa-arrow-pointer"></i> 選取
+        </button>
+    </div>
+
+    <div class="tb-group">
+        <span class="tb-label">縮放：</span>
+        <button class="tb-btn" id="btnZoomOut"><i class="fa-solid fa-minus"></i></button>
+        <span class="tb-label" id="zoomLevel" style="color:var(--accent);min-width:40px;text-align:center">100%</span>
+        <button class="tb-btn" id="btnZoomIn"><i class="fa-solid fa-plus"></i></button>
+        <button class="tb-btn" id="btnFit"><i class="fa-solid fa-expand"></i> 適合</button>
+    </div>
+
+    <button class="tb-btn" id="btnUndo" title="復原 (Ctrl+Z)"><i class="fa-solid fa-rotate-left"></i></button>
+</div>
+
+<!-- ===== Status Hint ===== -->
+<div class="status-bar" id="statusBar">繪製模式：點擊放置錨點，點擊第一個綠色點封閉多邊形</div>
+
+<!-- ===== Main ===== -->
+<div class="main-layout">
+
+    <!-- Canvas -->
+    <div class="canvas-area" id="canvasArea">
+        <div class="canvas-wrap" id="canvasWrap">
+            <img id="baseImage" src="../image/廚房.jpg" draggable="false">
+            <svg class="svg-overlay" id="svgOverlay"></svg>
+        </div>
+    </div>
+
+    <!-- Side Panel -->
+    <div class="side-panel">
+        <div class="sp-header">
+            <h2><i class="fa-solid fa-layer-group"></i> 區域列表</h2>
+            <span class="badge" id="zoneCount">0 個區域</span>
+        </div>
+
+        <div class="sp-scroll" id="zoneList">
+            <p style="font-size:12px;color:var(--text2);text-align:center;padding:40px 0;">
+                尚無區域<br>
+                <small>使用「繪製」工具在圖片上框選區域</small>
+            </p>
+        </div>
+
+        <!-- Export -->
+        <div class="export-panel">
+            <div class="export-btns">
+                <button class="tb-btn tb-btn--warn" id="btnExportSVG" style="flex:1">
+                    <i class="fa-solid fa-code"></i> 匯出 SVG
+                </button>
+                <button class="tb-btn tb-btn--primary" id="btnExportJSON" style="flex:1">
+                    <i class="fa-solid fa-file-code"></i> 匯出 JSON
+                </button>
+            </div>
+            <div style="margin-top:8px">
+                <button class="tb-btn" id="btnImportJSON" style="width:100%">
+                    <i class="fa-solid fa-file-import"></i> 匯入 JSON
+                </button>
+                <input type="file" id="fileImportJSON" accept=".json" style="display:none">
+            </div>
+            <textarea id="exportOutput" placeholder="匯出結果會顯示在這裡..." readonly></textarea>
+        </div>
+    </div>
+</div>
+
+<!-- Coord -->
+<div class="coord-display" id="coordDisplay">
+    X: <span id="coordX">0</span> &nbsp; Y: <span id="coordY">0</span> &nbsp;
+    圖片: <span id="imgSize">-</span>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+(() => {
+    'use strict';
+
+    // ===== Preset Zones (對應前台套房選材項目) =====
+    const presetZones = {
+        '../image/廚房.jpg': [
+            { name: 'appliance-cab', label: '電器櫃',   color: '#6b4c3b', opacity: 0.85, blendMode: 'color' },
+            { name: 'upper-cab',     label: '上櫃面板', color: '#6b4c3b', opacity: 0.85, blendMode: 'color' },
+            { name: 'countertop',    label: '廚具檯面', color: '#8a8078', opacity: 0.85, blendMode: 'color' },
+            { name: 'lower-cab',     label: '下櫃面板', color: '#6b4c3b', opacity: 0.85, blendMode: 'color' },
+        ],
+        '../image/客餐廳.jpg': [
+            { name: 'floor',    label: '地坪',       color: '#d6cfc5', opacity: 0.80, blendMode: 'color' },
+            { name: 'wall',     label: '客廳油漆',   color: '#ffffff', opacity: 0.78, blendMode: 'color' },
+            { name: 'door',     label: '門片顏色',   color: '#8b7355', opacity: 0.85, blendMode: 'color' },
+            { name: 'entrance', label: '玄關門背面', color: '#d4b896', opacity: 0.85, blendMode: 'color' },
+        ],
+        '../image/主浴.jpg': [
+            { name: 'bath-tiles', label: '主浴地坪', color: '#c4a882', opacity: 0.78, blendMode: 'color' },
+        ],
+    };
+
+    // Per-image zone storage (切換圖片時保留已畫的區域)
+    const zoneStore = {};
+
+    // ===== State =====
+    const state = {
+        mode: 'draw',          // 'draw' | 'select'
+        zones: [],             // [{id, name, points:[[x,y],...], color, opacity, blendMode}]
+        currentPoints: [],     // points being drawn
+        selectedZoneId: null,
+        drawTargetZoneId: null, // 指定繪製目標區域 (重繪功能)
+        dragAnchor: null,      // {zoneId, pointIndex}
+        zoom: 1,
+        imageW: 0,
+        imageH: 0,
+        imageSrc: '',
+        undoStack: [],
+    };
+
+    let nextZoneId = 1;
+
+    // ===== DOM =====
+    const $ = s => document.querySelector(s);
+    const $$ = s => document.querySelectorAll(s);
+
+    const canvasArea   = $('#canvasArea');
+    const canvasWrap   = $('#canvasWrap');
+    const baseImage    = $('#baseImage');
+    const svgOverlay   = $('#svgOverlay');
+    const statusBar    = $('#statusBar');
+    const zoneListEl   = $('#zoneList');
+    const exportOutput = $('#exportOutput');
+
+    // ===== Image Loading =====
+    function loadImage(src) {
+        baseImage.src = src;
+        state.imageSrc = src;
+    }
+
+    baseImage.addEventListener('load', () => {
+        state.imageW = baseImage.naturalWidth;
+        state.imageH = baseImage.naturalHeight;
+        svgOverlay.setAttribute('viewBox', `0 0 ${state.imageW} ${state.imageH}`);
+        $('#imgSize').textContent = `${state.imageW}×${state.imageH}`;
+        applyZoom();
+    });
+
+    // Save current zones before switching
+    function saveCurrentZones() {
+        if (state.imageSrc) {
+            zoneStore[state.imageSrc] = JSON.parse(JSON.stringify(state.zones));
+        }
+    }
+
+    // Load preset zones for an image (or restore from store)
+    function loadZonesForImage(src) {
+        if (zoneStore[src]) {
+            // Restore previously edited zones
+            state.zones = JSON.parse(JSON.stringify(zoneStore[src]));
+            // Ensure nextZoneId is higher than any existing
+            state.zones.forEach(z => { if (z.id >= nextZoneId) nextZoneId = z.id + 1; });
+        } else if (presetZones[src]) {
+            // Initialize from presets (empty points, user will draw)
+            state.zones = presetZones[src].map(p => ({
+                id: nextZoneId++,
+                name: p.name,
+                label: p.label,
+                points: [],
+                color: p.color,
+                opacity: p.opacity,
+                blendMode: p.blendMode,
+            }));
+        } else {
+            state.zones = [];
+        }
+        state.currentPoints = [];
+        state.selectedZoneId = null;
+        state.drawTargetZoneId = null;
+    }
+
+    $('#imageSelect').addEventListener('change', e => {
+        saveCurrentZones();
+        loadImage(e.target.value);
+        loadZonesForImage(e.target.value);
+        renderAll();
+    });
+
+    // Upload
+    $('#btnUpload').addEventListener('click', () => $('#fileUpload').click());
+    $('#fileUpload').addEventListener('change', e => {
+        const file = e.target.files[0];
+        if (!file) return;
+        const url = URL.createObjectURL(file);
+        loadImage(url);
+        state.zones = [];
+        state.currentPoints = [];
+        renderAll();
+    });
+
+    // ===== Zoom =====
+    function applyZoom() {
+        canvasWrap.style.transform = `scale(${state.zoom})`;
+        $('#zoomLevel').textContent = Math.round(state.zoom * 100) + '%';
+    }
+
+    function fitZoom() {
+        const areaW = canvasArea.clientWidth;
+        const areaH = canvasArea.clientHeight;
+        const z = Math.min(areaW / state.imageW, areaH / state.imageH, 1) * 0.95;
+        state.zoom = z;
+        applyZoom();
+    }
+
+    $('#btnZoomIn').addEventListener('click', () => { state.zoom = Math.min(state.zoom + 0.15, 4); applyZoom(); });
+    $('#btnZoomOut').addEventListener('click', () => { state.zoom = Math.max(state.zoom - 0.15, 0.1); applyZoom(); });
+    $('#btnFit').addEventListener('click', fitZoom);
+
+    // Mouse wheel zoom
+    canvasArea.addEventListener('wheel', e => {
+        e.preventDefault();
+        const delta = e.deltaY > 0 ? -0.08 : 0.08;
+        state.zoom = Math.min(Math.max(state.zoom + delta, 0.1), 4);
+        applyZoom();
+    }, { passive: false });
+
+    // ===== Mode =====
+    function setMode(mode) {
+        state.mode = mode;
+        canvasArea.className = 'canvas-area mode-' + mode;
+        $$('.topbar .tb-btn--primary').forEach(b => b.classList.remove('tb-btn--primary'));
+        if (mode === 'draw') {
+            $('#btnDraw').classList.add('tb-btn--primary');
+            statusBar.textContent = '繪製模式：點擊放置錨點，點擊第一個綠色點封閉多邊形（右鍵取消）';
+            statusBar.classList.add('visible');
+        } else {
+            $('#btnSelect').classList.add('tb-btn--primary');
+            statusBar.textContent = '選取模式：點擊區域選取，拖曳錨點調整位置';
+            statusBar.classList.add('visible');
+            setTimeout(() => statusBar.classList.remove('visible'), 2500);
+        }
+        // Cancel current drawing
+        if (mode !== 'draw') {
+            state.currentPoints = [];
+            renderDrawing();
+        }
+    }
+
+    $('#btnDraw').addEventListener('click', () => setMode('draw'));
+    $('#btnSelect').addEventListener('click', () => setMode('select'));
+
+    // ===== Canvas Coordinates =====
+    function getImageCoord(e) {
+        const rect = baseImage.getBoundingClientRect();
+        const x = (e.clientX - rect.left) / state.zoom;
+        const y = (e.clientY - rect.top) / state.zoom;
+        return [Math.round(x), Math.round(y)];
+    }
+
+    // Mouse move → coord display
+    canvasArea.addEventListener('mousemove', e => {
+        const [x, y] = getImageCoord(e);
+        $('#coordX').textContent = x;
+        $('#coordY').textContent = y;
+
+        // Live drawing line
+        if (state.mode === 'draw' && state.currentPoints.length > 0) {
+            renderDrawing(x, y);
+        }
+
+        // Drag anchor
+        if (state.dragAnchor) {
+            const zone = state.zones.find(z => z.id === state.dragAnchor.zoneId);
+            if (zone) {
+                zone.points[state.dragAnchor.pointIndex] = [
+                    Math.max(0, Math.min(x, state.imageW)),
+                    Math.max(0, Math.min(y, state.imageH))
+                ];
+                renderAll();
+            }
+        }
+    });
+
+    // ===== Drawing =====
+    canvasArea.addEventListener('click', e => {
+        if (e.target.closest('.side-panel') || e.target.closest('.topbar')) return;
+
+        const [x, y] = getImageCoord(e);
+
+        if (state.mode === 'draw') {
+            // Check if clicking on first point to close
+            if (state.currentPoints.length >= 3) {
+                const [fx, fy] = state.currentPoints[0];
+                const dist = Math.sqrt((x - fx) ** 2 + (y - fy) ** 2);
+                if (dist < 15 / state.zoom) {
+                    finishZone();
+                    return;
+                }
+            }
+            state.currentPoints.push([x, y]);
+            renderDrawing();
+        }
+
+        if (state.mode === 'select') {
+            // Check if clicked on a zone
+            const hit = findZoneAtPoint(x, y);
+            selectZone(hit ? hit.id : null);
+        }
+    });
+
+    // Right click cancel
+    canvasArea.addEventListener('contextmenu', e => {
+        e.preventDefault();
+        if (state.mode === 'draw' && state.currentPoints.length > 0) {
+            state.currentPoints.pop();
+            if (state.currentPoints.length === 0) {
+                renderDrawing();
+            } else {
+                renderDrawing();
+            }
+        }
+    });
+
+    // Anchor drag
+    canvasArea.addEventListener('mousedown', e => {
+        if (e.target.classList.contains('anchor-point')) {
+            const zoneId = parseInt(e.target.dataset.zoneId);
+            const pointIndex = parseInt(e.target.dataset.pointIndex);
+            state.dragAnchor = { zoneId, pointIndex };
+            pushUndo();
+            e.preventDefault();
+        }
+    });
+
+    window.addEventListener('mouseup', () => {
+        state.dragAnchor = null;
+    });
+
+    function finishZone() {
+        if (state.currentPoints.length < 3) return;
+        pushUndo();
+
+        // Check if drawing for a specific target zone (redraw mode)
+        if (state.drawTargetZoneId) {
+            const target = state.zones.find(z => z.id === state.drawTargetZoneId);
+            if (target) {
+                target.points = [...state.currentPoints];
+                state.currentPoints = [];
+                state.selectedZoneId = target.id;
+                state.drawTargetZoneId = null;
+                statusBar.textContent = '繪製模式：點擊放置錨點，點擊第一個綠色點封閉多邊形（右鍵取消）';
+                renderAll();
+                toast('已繪製區域：' + (target.label || target.name));
+                return;
+            }
+        }
+
+        const zone = {
+            id: nextZoneId++,
+            name: '新區域_' + (nextZoneId - 1),
+            points: [...state.currentPoints],
+            color: '#c8a96e',
+            opacity: 0.35,
+            blendMode: 'multiply',
+        };
+        state.zones.push(zone);
+        state.currentPoints = [];
+        state.selectedZoneId = zone.id;
+        renderAll();
+        toast('已建立區域：' + zone.name);
+
+        // Auto-expand for renaming
+        setTimeout(() => {
+            const nameInput = document.querySelector(`.zone-card[data-id="${zone.id}"] .zone-name-input`);
+            if (nameInput) { nameInput.focus(); nameInput.select(); }
+        }, 100);
+    }
+
+    // ===== Find zone at point =====
+    function findZoneAtPoint(px, py) {
+        // Reverse order (top-most first)
+        for (let i = state.zones.length - 1; i >= 0; i--) {
+            if (pointInPolygon(px, py, state.zones[i].points)) {
+                return state.zones[i];
+            }
+        }
+        return null;
+    }
+
+    function pointInPolygon(x, y, pts) {
+        let inside = false;
+        for (let i = 0, j = pts.length - 1; i < pts.length; j = i++) {
+            const xi = pts[i][0], yi = pts[i][1];
+            const xj = pts[j][0], yj = pts[j][1];
+            if ((yi > y) !== (yj > y) && x < (xj - xi) * (y - yi) / (yj - yi) + xi) {
+                inside = !inside;
+            }
+        }
+        return inside;
+    }
+
+    function selectZone(id) {
+        state.selectedZoneId = id;
+        renderAll();
+    }
+
+    // ===== Undo =====
+    function pushUndo() {
+        state.undoStack.push(JSON.stringify(state.zones));
+        if (state.undoStack.length > 50) state.undoStack.shift();
+    }
+
+    function undo() {
+        if (state.undoStack.length === 0) return;
+        state.zones = JSON.parse(state.undoStack.pop());
+        state.selectedZoneId = null;
+        renderAll();
+        toast('已復原');
+    }
+
+    $('#btnUndo').addEventListener('click', undo);
+
+    // ===== Render =====
+    function renderAll() {
+        renderSVG();
+        renderZoneList();
+        renderAnchors();
+    }
+
+    function renderSVG() {
+        // Clear
+        svgOverlay.innerHTML = '';
+
+        // Zones (skip zones without polygon points)
+        state.zones.filter(z => z.points.length >= 3).forEach(zone => {
+            const pts = zone.points.map(p => p.join(',')).join(' ');
+            const poly = document.createElementNS('http://www.w3.org/2000/svg', 'polygon');
+            poly.setAttribute('points', pts);
+            poly.setAttribute('fill', zone.color);
+            poly.setAttribute('opacity', zone.opacity);
+            poly.setAttribute('stroke', zone.id === state.selectedZoneId ? '#e94560' : 'rgba(255,255,255,0.3)');
+            poly.setAttribute('stroke-width', zone.id === state.selectedZoneId ? '3' : '1');
+            poly.style.mixBlendMode = zone.blendMode;
+            if (zone.id === state.selectedZoneId) {
+                poly.setAttribute('stroke-dasharray', '6 3');
+                poly.classList.add('selected');
+            }
+            poly.dataset.zoneId = zone.id;
+            poly.addEventListener('click', (e) => {
+                e.stopPropagation();
+                selectZone(zone.id);
+            });
+            svgOverlay.appendChild(poly);
+        });
+    }
+
+    function renderDrawing(mouseX, mouseY) {
+        // Remove previous drawing elements
+        svgOverlay.querySelectorAll('.drawing-temp').forEach(el => el.remove());
+        document.querySelectorAll('.anchor-point.drawing').forEach(el => el.remove());
+
+        if (state.currentPoints.length === 0) return;
+
+        // Draw lines
+        let d = 'M' + state.currentPoints.map(p => p.join(',')).join(' L');
+        if (mouseX !== undefined) d += ` L${mouseX},${mouseY}`;
+
+        const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+        path.setAttribute('d', d);
+        path.setAttribute('class', 'draw-line drawing-temp');
+        svgOverlay.appendChild(path);
+
+        // Filled preview
+        if (state.currentPoints.length >= 3) {
+            const previewPts = [...state.currentPoints];
+            if (mouseX !== undefined) previewPts.push([mouseX, mouseY]);
+            const poly = document.createElementNS('http://www.w3.org/2000/svg', 'polygon');
+            poly.setAttribute('points', previewPts.map(p => p.join(',')).join(' '));
+            poly.setAttribute('fill', '#e94560');
+            poly.setAttribute('opacity', '0.12');
+            poly.setAttribute('class', 'drawing-temp');
+            svgOverlay.appendChild(poly);
+        }
+
+        // Anchor points (in image space, so use CSS transform based on zoom)
+        state.currentPoints.forEach((pt, i) => {
+            const dot = document.createElement('div');
+            dot.className = 'anchor-point drawing' + (i === 0 ? ' first-point' : '');
+            dot.style.left = (pt[0] * state.zoom) + 'px';
+            dot.style.top = (pt[1] * state.zoom) + 'px';
+            if (i === 0 && state.currentPoints.length >= 3) {
+                dot.title = '點擊封閉多邊形';
+            }
+            canvasWrap.appendChild(dot);
+        });
+    }
+
+    function renderAnchors() {
+        document.querySelectorAll('.anchor-point:not(.drawing)').forEach(el => el.remove());
+
+        if (!state.selectedZoneId || state.mode !== 'select') return;
+
+        const zone = state.zones.find(z => z.id === state.selectedZoneId);
+        if (!zone) return;
+
+        zone.points.forEach((pt, i) => {
+            const dot = document.createElement('div');
+            dot.className = 'anchor-point';
+            dot.style.left = (pt[0] * state.zoom) + 'px';
+            dot.style.top = (pt[1] * state.zoom) + 'px';
+            dot.dataset.zoneId = zone.id;
+            dot.dataset.pointIndex = i;
+            dot.title = `錨點 ${i + 1} (${pt[0]}, ${pt[1]})`;
+            canvasWrap.appendChild(dot);
+        });
+    }
+
+    // ===== Zone List =====
+    function renderZoneList() {
+        if (state.zones.length === 0) {
+            zoneListEl.innerHTML = `
+                <p style="font-size:12px;color:var(--text2);text-align:center;padding:40px 0;">
+                    尚無區域<br><small>使用「繪製」工具在圖片上框選區域</small>
+                </p>`;
+            $('#zoneCount').textContent = '0 個區域';
+            return;
+        }
+
+        const doneCount = state.zones.filter(z => z.points.length >= 3).length;
+        $('#zoneCount').textContent = `${doneCount}/${state.zones.length} 已繪製`;
+
+        zoneListEl.innerHTML = state.zones.map(zone => {
+            const isSelected = zone.id === state.selectedZoneId;
+            const isDrawTarget = zone.id === state.drawTargetZoneId;
+            const ptsCount = zone.points.length;
+            const hasPoly = ptsCount >= 3;
+            const blendModes = ['multiply', 'overlay', 'screen', 'soft-light', 'color-burn', 'normal'];
+            const displayName = zone.label ? `${zone.label}` : zone.name;
+            const subName = zone.label ? `<span style="font-size:10px;color:var(--text2);margin-left:4px">${zone.name}</span>` : '';
+
+            return `
+            <div class="zone-card ${isSelected ? 'selected expanded' : ''} ${isDrawTarget ? 'selected' : ''}" data-id="${zone.id}">
+                <div class="zone-card__header" onclick="window._selectZone(${zone.id})">
+                    <div class="zone-card__color" style="background:${zone.color}"></div>
+                    <span class="zone-card__name">${displayName}${subName}</span>
+                    ${hasPoly
+                        ? `<span class="zone-card__pts">${ptsCount}pts</span>`
+                        : `<span class="zone-card__pending">待繪製</span>`
+                    }
+                    <div class="zone-card__actions">
+                        <button class="btn-redraw" onclick="event.stopPropagation();window._redrawZone(${zone.id})" title="${hasPoly ? '重繪範圍' : '繪製範圍'}"><i class="fa-solid fa-draw-polygon"></i></button>
+                        <button onclick="event.stopPropagation();window._dupZone(${zone.id})" title="複製"><i class="fa-solid fa-copy"></i></button>
+                        <button class="btn-del" onclick="event.stopPropagation();window._delZone(${zone.id})" title="刪除"><i class="fa-solid fa-trash"></i></button>
+                    </div>
+                </div>
+                <div class="zone-card__body">
+                    <div class="field-row">
+                        <label>名稱</label>
+                        <input type="text" class="zone-name-input" value="${zone.name}"
+                               onchange="window._renameZone(${zone.id}, this.value)">
+                    </div>
+                    <div class="field-row">
+                        <label>顏色</label>
+                        <input type="color" value="${zone.color}"
+                               onchange="window._setZoneProp(${zone.id}, 'color', this.value)">
+                        <input type="text" value="${zone.color}" style="width:80px;flex:none"
+                               onchange="window._setZoneProp(${zone.id}, 'color', this.value)">
+                    </div>
+                    <div class="field-row">
+                        <label>透明度</label>
+                        <input type="range" min="0" max="1" step="0.01" value="${zone.opacity}"
+                               oninput="this.nextElementSibling.textContent=this.value;window._setZoneProp(${zone.id}, 'opacity', parseFloat(this.value))">
+                        <span class="range-val">${zone.opacity}</span>
+                    </div>
+                    <div class="blend-preview">
+                        <span>混合模式（讓陰影與門縫自然融入）：</span>
+                        <div class="blend-modes">
+                            ${blendModes.map(bm => `
+                                <button class="blend-mode-btn ${zone.blendMode === bm ? 'active' : ''}"
+                                        onclick="window._setZoneProp(${zone.id}, 'blendMode', '${bm}')">${bm}</button>
+                            `).join('')}
+                        </div>
+                    </div>
+                    <div style="margin-top:10px;font-size:10px;color:var(--text2)">
+                        ${zone.points.length > 0
+                            ? '座標：' + zone.points.map(p => '(' + p[0] + ',' + p[1] + ')').join(' → ')
+                            : '尚未繪製多邊形範圍，請點擊 <i class="fa-solid fa-draw-polygon"></i> 開始繪製'
+                        }
+                    </div>
+                </div>
+            </div>`;
+        }).join('');
+    }
+
+    // ===== Zone Operations (global for inline handlers) =====
+    window._selectZone = id => {
+        state.selectedZoneId = state.selectedZoneId === id ? null : id;
+        if (state.mode === 'draw') setMode('select');
+        renderAll();
+    };
+
+    window._delZone = id => {
+        pushUndo();
+        state.zones = state.zones.filter(z => z.id !== id);
+        if (state.selectedZoneId === id) state.selectedZoneId = null;
+        renderAll();
+        toast('已刪除區域');
+    };
+
+    window._dupZone = id => {
+        const src = state.zones.find(z => z.id === id);
+        if (!src) return;
+        pushUndo();
+        const dup = {
+            ...JSON.parse(JSON.stringify(src)),
+            id: nextZoneId++,
+            name: src.name + '_copy',
+            points: src.points.map(([x, y]) => [x + 15, y + 15]),
+        };
+        state.zones.push(dup);
+        state.selectedZoneId = dup.id;
+        renderAll();
+        toast('已複製區域');
+    };
+
+    window._renameZone = (id, name) => {
+        const zone = state.zones.find(z => z.id === id);
+        if (zone) { zone.name = name; renderAll(); }
+    };
+
+    window._setZoneProp = (id, prop, val) => {
+        const zone = state.zones.find(z => z.id === id);
+        if (zone) { zone[prop] = val; renderAll(); }
+    };
+
+    window._redrawZone = id => {
+        const zone = state.zones.find(z => z.id === id);
+        if (!zone) return;
+        pushUndo();
+        zone.points = [];
+        state.drawTargetZoneId = id;
+        state.currentPoints = [];
+        setMode('draw');
+        statusBar.textContent = `繪製「${zone.label || zone.name}」：點擊放置錨點，點擊綠色點封閉`;
+        statusBar.classList.add('visible');
+        renderAll();
+        toast('開始繪製：' + (zone.label || zone.name));
+    };
+
+    // ===== Export =====
+    function exportJSON() {
+        const data = {
+            image: state.imageSrc,
+            imageSize: { w: state.imageW, h: state.imageH },
+            zones: state.zones.filter(z => z.points.length >= 3).map(z => ({
+                name: z.name,
+                label: z.label || '',
+                points: z.points,
+                color: z.color,
+                opacity: z.opacity,
+                blendMode: z.blendMode,
+            })),
+        };
+        const json = JSON.stringify(data, null, 2);
+        exportOutput.value = json;
+        copyToClipboard(json);
+        toast('JSON 已複製到剪貼簿');
+    }
+
+    function exportSVG() {
+        let svgParts = state.zones.filter(z => z.points.length >= 3).map(zone => {
+            const pts = zone.points.map(p => p.join(',')).join(' ');
+            return `                        <polygon data-zone="${zone.name}" class="zone"\n` +
+                   `                                 points="${pts}"\n` +
+                   `                                 fill="${zone.color}" opacity="${zone.opacity}"` +
+                   (zone.blendMode !== 'normal' ? `\n                                 style="mix-blend-mode:${zone.blendMode}"` : '') +
+                   `/>`;
+        });
+
+        const svgCode =
+            `                    <svg class="photo-view active"\n` +
+            `                         viewBox="0 0 ${state.imageW} ${state.imageH}" preserveAspectRatio="xMidYMid slice">\n` +
+            `                        <image href="${state.imageSrc}" width="${state.imageW}" height="${state.imageH}"/>\n` +
+            svgParts.join('\n') + '\n' +
+            `                    </svg>`;
+
+        exportOutput.value = svgCode;
+        copyToClipboard(svgCode);
+        toast('SVG 代碼已複製到剪貼簿');
+    }
+
+    function copyToClipboard(text) {
+        navigator.clipboard.writeText(text).catch(() => {
+            exportOutput.select();
+            document.execCommand('copy');
+        });
+    }
+
+    $('#btnExportJSON').addEventListener('click', exportJSON);
+    $('#btnExportSVG').addEventListener('click', exportSVG);
+
+    // ===== Import JSON =====
+    $('#btnImportJSON').addEventListener('click', () => $('#fileImportJSON').click());
+    $('#fileImportJSON').addEventListener('change', e => {
+        const file = e.target.files[0];
+        if (!file) return;
+        const reader = new FileReader();
+        reader.onload = ev => {
+            try {
+                const data = JSON.parse(ev.target.result);
+                if (data.image) loadImage(data.image);
+                if (data.zones) {
+                    state.zones = data.zones.map((z, i) => ({
+                        id: nextZoneId++,
+                        name: z.name || 'zone_' + i,
+                        label: z.label || '',
+                        points: z.points,
+                        color: z.color || '#c8a96e',
+                        opacity: z.opacity ?? 0.35,
+                        blendMode: z.blendMode || 'multiply',
+                    }));
+                }
+                renderAll();
+                toast('已匯入 ' + state.zones.length + ' 個區域');
+            } catch (err) {
+                toast('JSON 格式錯誤：' + err.message);
+            }
+        };
+        reader.readAsText(file);
+        e.target.value = '';
+    });
+
+    // ===== Keyboard Shortcuts =====
+    document.addEventListener('keydown', e => {
+        if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+
+        if (e.key === 'd' || e.key === 'D') setMode('draw');
+        if (e.key === 'v' || e.key === 'V') setMode('select');
+        if (e.key === 'Escape') {
+            state.currentPoints = [];
+            state.drawTargetZoneId = null;
+            renderDrawing();
+        }
+        if ((e.ctrlKey || e.metaKey) && e.key === 'z') {
+            e.preventDefault();
+            undo();
+        }
+        if (e.key === 'Delete' || e.key === 'Backspace') {
+            if (state.selectedZoneId && state.mode === 'select') {
+                window._delZone(state.selectedZoneId);
+            }
+        }
+    });
+
+    // ===== Toast =====
+    function toast(msg) {
+        const el = $('#toast');
+        el.textContent = msg;
+        el.classList.add('show');
+        clearTimeout(el._timer);
+        el._timer = setTimeout(() => el.classList.remove('show'), 2000);
+    }
+
+    // ===== Init =====
+    baseImage.addEventListener('load', () => {
+        setTimeout(fitZoom, 100);
+    });
+
+    // Load preset zones for the default image
+    loadZonesForImage($('#imageSelect').value);
+    renderAll();
+    setMode('draw');
+})();
+</script>
+</body>
+</html>

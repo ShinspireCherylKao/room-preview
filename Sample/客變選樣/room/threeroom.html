@@ -1,0 +1,868 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>大三房 — 客變選樣套圖</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;500;600;700&family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/room.css">
+</head>
+<body>
+
+    <!-- 導覽列 -->
+    <nav class="top-nav">
+        <div class="nav-inner">
+            <a href="../index.html" class="nav-brand">
+                <i class="fa-solid fa-building"></i>
+                <span>客變選樣系統</span>
+            </a>
+            <div class="nav-right">
+                <span class="nav-room-label">目前房型：<strong>大三房</strong></span>
+                <a href="../index.html" class="btn-back"><i class="fa-solid fa-arrow-left"></i> 返回房型選擇</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 頁面標題 -->
+    <div class="page-header">
+        <p class="page-header__eyebrow">CUSTOMIZATION — 3+1 ROOM</p>
+        <h1 class="page-header__title">職人訂製 — 大三房</h1>
+        <p class="page-header__subtitle">對應戶別：A1、A5、A6、A9、B1、B5、B6、B9</p>
+    </div>
+
+    <!-- 提示 -->
+    <div class="disclaimer-banner">此為網站測試樣版，實際以買賣合約書為準</div>
+
+    <!-- 區域分頁 -->
+    <div class="section-tabs">
+        <button class="section-tab active" data-section="sec-kitchen"><i class="fa-solid fa-utensils"></i> 廚房</button>
+        <button class="section-tab" data-section="sec-bathroom"><i class="fa-solid fa-bath"></i> 衛浴</button>
+        <button class="section-tab" data-section="sec-bedroom"><i class="fa-solid fa-bed"></i> 臥室</button>
+        <button class="section-tab" data-section="sec-other"><i class="fa-solid fa-ellipsis"></i> 其他</button>
+    </div>
+
+    <!-- 主體 -->
+    <div class="main-layout">
+        <div class="content-area">
+
+            <!-- ==================== 廚房 ==================== -->
+            <div class="section-panel active" id="sec-kitchen">
+                <h2 class="section-panel__title">廚房選材</h2>
+                <p class="section-panel__desc">依據您的喜好選擇廚房各區建材與配色</p>
+
+                <!-- 電器櫃 -->
+                <div class="material-group">
+                    <div class="material-group__header">
+                        <div class="material-group__icon"><i class="fa-solid fa-tv"></i></div>
+                        <h3 class="material-group__title">電器櫃</h3>
+                    </div>
+                    <div class="material-options">
+                        <label class="material-option">
+                            <input type="radio" name="kitchen_cabinet" value="tropical-walnut" data-label="熱帶核桃木" checked>
+                            <div class="material-option__label">
+                                <div class="material-option__swatch" style="background: #6b4c3b;"></div>
+                                <span class="material-option__name">熱帶核桃木</span>
+                            </div>
+                            <span class="material-option__check"><i class="fa-solid fa-check"></i></span>
+                        </label>
+                        <label class="material-option">
+                            <input type="radio" name="kitchen_cabinet" value="oak-white" data-label="白橡木">
+                            <div class="material-option__label">
+                                <div class="material-option__swatch" style="background: #d4c5a9;"></div>
+                                <span class="material-option__name">白橡木</span>
+                            </div>
+                            <span class="material-option__check"><i class="fa-solid fa-check"></i></span>
+                        </label>
+                        <label class="material-option">
+                            <input type="radio" name="kitchen_cabinet" value="gray-oak" data-label="灰橡木">
+                            <div class="material-option__label">
+                                <div class="material-option__swatch" style="background: #9e9589;"></div>
+                                <span class="material-option__name">灰橡木</span>
+                            </div>
+                            <span class="material-option__check"><i class="fa-solid fa-check"></i></span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- 廚具檯面 -->
+                <div class="material-group">
+                    <div class="material-group__header">
+                        <div class="material-group__icon"><i class="fa-solid fa-sink"></i></div>
+                        <h3 class="material-group__title">廚具檯面</h3>
+                    </div>
+                    <div class="material-options">
+                        <label class="material-option">
+                            <input type="radio" name="kitchen_countertop" value="gray-pheasant" data-label="灰點帝雉石" checked>
+                            <div class="material-option__label">
+                                <div class="material-option__swatch" style="background: linear-gradient(135deg, #b0a89e, #8a8078);"></div>
+                                <span class="material-option__name">灰點帝雉石</span>
+                            </div>
+                            <span class="material-option__check"><i class="fa-solid fa-check"></i></span>
+                        </label>
+                        <label class="material-option">
+                            <input type="radio" name="kitchen_countertop" value="white-marble" data-label="雪白石">
+                            <div class="material-option__label">
+                                <div class="material-option__swatch" style="background: linear-gradient(135deg, #f0ede8, #d8d2c8);"></div>
+                                <span class="material-option__name">雪白石</span>
+                            </div>
+                            <span class="material-option__check"><i class="fa-solid fa-check"></i></span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- 上櫃面板 -->
+                <div class="material-group">
+                    <div class="material-group__header">
+                        <div class="material-group__icon"><i class="fa-solid fa-square"></i></div>
+                        <h3 class="material-group__title">上櫃面板</h3>
+                    </div>
+                    <div class="material-options">
+                        <label class="material-option">
+                            <input type="radio" name="upper_panel" value="tropical-walnut" data-label="熱帶核桃木" checked>
+                            <div class="material-option__label">
+                                <div class="material-option__swatch" style="background: #6b4c3b;"></div>
+                                <span class="material-option__name">熱帶核桃木</span>
+                            </div>
+                            <span class="material-option__check"><i class="fa-solid fa-check"></i></span>
+                        </label>
+                        <label class="material-option">
+                            <input type="radio" name="upper_panel" value="oak-white" data-label="白橡木">
+                            <div class="material-option__label">
+                                <div class="material-option__swatch" style="background: #d4c5a9;"></div>
+                                <span class="material-option__name">白橡木</span>
+                            </div>
+                            <span class="material-option__check"><i class="fa-solid fa-check"></i></span>
+                        </label>
+                        <label class="material-option">
+                            <input type="radio" name="upper_panel" value="gray-oak" data-label="灰橡木">
+                            <div class="material-option__label">
+                                <div class="material-option__swatch" style="background: #9e9589;"></div>
+                                <span class="material-option__name">灰橡木</span>
+                            </div>
+                            <span class="material-option__check"><i class="fa-solid fa-check"></i></span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- 下櫃面板 -->
+                <div class="material-group">
+                    <div class="material-group__header">
+                        <div class="material-group__icon"><i class="fa-solid fa-square"></i></div>
+                        <h3 class="material-group__title">下櫃面板</h3>
+                    </div>
+                    <div class="material-options">
+                        <label class="material-option">
+                            <input type="radio" name="lower_panel" value="tropical-walnut" data-label="熱帶核桃木" checked>
+                            <div class="material-option__label">
+                                <div class="material-option__swatch" style="background: #6b4c3b;"></div>
+                                <span class="material-option__name">熱帶核桃木</span>
+                            </div>
+                            <span class="material-option__check"><i class="fa-solid fa-check"></i></span>
+                        </label>
+                        <label class="material-option">
+                            <input type="radio" name="lower_panel" value="oak-white" data-label="白橡木">
+                            <div class="material-option__label">
+                                <div class="material-option__swatch" style="background: #d4c5a9;"></div>
+                                <span class="material-option__name">白橡木</span>
+                            </div>
+                            <span class="material-option__check"><i class="fa-solid fa-check"></i></span>
+                        </label>
+                        <label class="material-option">
+                            <input type="radio" name="lower_panel" value="gray-oak" data-label="灰橡木">
+                            <div class="material-option__label">
+                                <div class="material-option__swatch" style="background: #9e9589;"></div>
+                                <span class="material-option__name">灰橡木</span>
+                            </div>
+                            <span class="material-option__check"><i class="fa-solid fa-check"></i></span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- 中島櫃體 -->
+                <div class="material-group">
+                    <div class="material-group__header">
+                        <div class="material-group__icon"><i class="fa-solid fa-table"></i></div>
+                        <h3 class="material-group__title">中島櫃體</h3>
+                    </div>
+                    <div class="material-options">
+                        <label class="material-option">
+                            <input type="radio" name="island_body" value="tropical-walnut" data-label="熱帶核桃木" checked>
+                            <div class="material-option__label">
+                                <div class="material-option__swatch" style="background: #6b4c3b;"></div>
+                                <span class="material-option__name">熱帶核桃木</span>
+                            </div>
+                            <span class="material-option__check"><i class="fa-solid fa-check"></i></span>
+                        </label>
+                        <label class="material-option">
+                            <input type="radio" name="island_body" value="oak-white" data-label="白橡木">
+                            <div class="material-option__label">
+                                <div class="material-option__swatch" style="background: #d4c5a9;"></div>
+                                <span class="material-option__name">白橡木</span>
+                            </div>
+                            <span class="material-option__check"><i class="fa-solid fa-check"></i></span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- 中島檯面 -->
+                <div class="material-group">
+                    <div class="material-group__header">
+                        <div class="material-group__icon"><i class="fa-solid fa-table"></i></div>
+                        <h3 class="material-group__title">中島檯面</h3>
+                    </div>
+                    <div class="material-options">
+                        <label class="material-option">
+                            <input type="radio" name="island_top" value="gray-pheasant" data-label="灰點帝雉石" checked>
+                            <div class="material-option__label">
+                                <div class="material-option__swatch" style="background: linear-gradient(135deg, #b0a89e, #8a8078);"></div>
+                                <span class="material-option__name">灰點帝雉石</span>
+                            </div>
+                            <span class="material-option__check"><i class="fa-solid fa-check"></i></span>
+                        </label>
+                        <label class="material-option">
+                            <input type="radio" name="island_top" value="white-marble" data-label="雪白石">
+                            <div class="material-option__label">
+                                <div class="material-option__swatch" style="background: linear-gradient(135deg, #f0ede8, #d8d2c8);"></div>
+                                <span class="material-option__name">雪白石</span>
+                            </div>
+                            <span class="material-option__check"><i class="fa-solid fa-check"></i></span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- 廚具烤玻 -->
+                <div class="material-group">
+                    <div class="material-group__header">
+                        <div class="material-group__icon"><i class="fa-solid fa-grip-lines"></i></div>
+                        <h3 class="material-group__title">廚具烤玻</h3>
+                    </div>
+                    <div class="material-options">
+                        <label class="material-option">
+                            <input type="radio" name="kitchen_glass" value="black" data-label="黑玻" checked>
+                            <div class="material-option__label">
+                                <div class="material-option__swatch" style="background: #1a1a1a;"></div>
+                                <span class="material-option__name">黑玻</span>
+                            </div>
+                            <span class="material-option__check"><i class="fa-solid fa-check"></i></span>
+                        </label>
+                        <label class="material-option">
+                            <input type="radio" name="kitchen_glass" value="white" data-label="白玻">
+                            <div class="material-option__label">
+                                <div class="material-option__swatch" style="background: #f0ede8; border: 1px solid #ddd;"></div>
+                                <span class="material-option__name">白玻</span>
+                            </div>
+                            <span class="material-option__check"><i class="fa-solid fa-check"></i></span>
+                        </label>
+                        <label class="material-option">
+                            <input type="radio" name="kitchen_glass" value="gray" data-label="灰玻">
+                            <div class="material-option__label">
+                                <div class="material-option__swatch" style="background: #7a7a7a;"></div>
+                                <span class="material-option__name">灰玻</span>
+                            </div>
+                            <span class="material-option__check"><i class="fa-solid fa-check"></i></span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- 地坪 -->
+                <div class="material-group">
+                    <div class="material-group__header">
+                        <div class="material-group__icon"><i class="fa-solid fa-border-all"></i></div>
+                        <h3 class="material-group__title">地坪</h3>
+                    </div>
+                    <div class="material-options">
+                        <label class="material-option">
+                            <input type="radio" name="kitchen_floor" value="butterfly-gray" data-label="蝴蝶灰杉">
+                            <div class="material-option__label">
+                                <div class="material-option__swatch" style="background: #9e9590;"></div>
+                                <span class="material-option__name">蝴蝶灰杉</span>
+                            </div>
+                            <span class="material-option__check"><i class="fa-solid fa-check"></i></span>
+                        </label>
+                        <label class="material-option">
+                            <input type="radio" name="kitchen_floor" value="california-gold" data-label="加州金木 EW8263">
+                            <div class="material-option__label">
+                                <div class="material-option__swatch" style="background: #c4a872;"></div>
+                                <span class="material-option__name">加州金木<br>EW8263</span>
+                            </div>
+                            <span class="material-option__check"><i class="fa-solid fa-check"></i></span>
+                        </label>
+                        <label class="material-option">
+                            <input type="radio" name="kitchen_floor" value="king-snow" data-label="國王雪杉 EW8262" checked>
+                            <div class="material-option__label">
+                                <div class="material-option__swatch" style="background: #d6cfc5;"></div>
+                                <span class="material-option__name">國王雪杉<br>EW8262</span>
+                            </div>
+                            <span class="material-option__check"><i class="fa-solid fa-check"></i></span>
+                        </label>
+                        <label class="material-option">
+                            <input type="radio" name="kitchen_floor" value="california-silver" data-label="加州銀木 EW8261">
+                            <div class="material-option__label">
+                                <div class="material-option__swatch" style="background: #b8b0a5;"></div>
+                                <span class="material-option__name">加州銀木<br>EW8261</span>
+                            </div>
+                            <span class="material-option__check"><i class="fa-solid fa-check"></i></span>
+                        </label>
+                        <label class="material-option">
+                            <input type="radio" name="kitchen_floor" value="king-gold" data-label="國王金杉 EW2000">
+                            <div class="material-option__label">
+                                <div class="material-option__swatch" style="background: #c9b48a;"></div>
+                                <span class="material-option__name">國王金杉<br>EW2000</span>
+                            </div>
+                            <span class="material-option__check"><i class="fa-solid fa-check"></i></span>
+                        </label>
+                        <label class="material-option">
+                            <input type="radio" name="kitchen_floor" value="butterfly-rice" data-label="蝴蝶米杉 EW2004">
+                            <div class="material-option__label">
+                                <div class="material-option__swatch" style="background: #ddd5c4;"></div>
+                                <span class="material-option__name">蝴蝶米杉<br>EW2004</span>
+                            </div>
+                            <span class="material-option__check"><i class="fa-solid fa-check"></i></span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- 門片顏色 -->
+                <div class="material-group">
+                    <div class="material-group__header">
+                        <div class="material-group__icon"><i class="fa-solid fa-door-closed"></i></div>
+                        <h3 class="material-group__title">門片顏色</h3>
+                    </div>
+                    <div class="material-options">
+                        <label class="material-option">
+                            <input type="radio" name="door_color" value="walnut" data-label="胡桃木">
+                            <div class="material-option__label">
+                                <div class="material-option__swatch" style="background: #5c3d2e;"></div>
+                                <span class="material-option__name">胡桃木</span>
+                            </div>
+                            <span class="material-option__check"><i class="fa-solid fa-check"></i></span>
+                        </label>
+                        <label class="material-option">
+                            <input type="radio" name="door_color" value="star-oak" data-label="星際橡木" checked>
+                            <div class="material-option__label">
+                                <div class="material-option__swatch" style="background: #8b7355;"></div>
+                                <span class="material-option__name">星際橡木</span>
+                            </div>
+                            <span class="material-option__check"><i class="fa-solid fa-check"></i></span>
+                        </label>
+                        <label class="material-option">
+                            <input type="radio" name="door_color" value="eucalyptus" data-label="淺尤加利">
+                            <div class="material-option__label">
+                                <div class="material-option__swatch" style="background: #c4b896;"></div>
+                                <span class="material-option__name">淺尤加利</span>
+                            </div>
+                            <span class="material-option__check"><i class="fa-solid fa-check"></i></span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ==================== 衛浴 ==================== -->
+            <div class="section-panel" id="sec-bathroom">
+                <h2 class="section-panel__title">衛浴選材</h2>
+                <p class="section-panel__desc">請選擇衛浴風格及面板配色</p>
+
+                <div class="sub-tabs">
+                    <button class="sub-tab active" data-subtab="bath-master">主臥衛浴</button>
+                    <button class="sub-tab" data-subtab="bath-second">次臥衛浴</button>
+                </div>
+
+                <!-- 主臥衛浴 -->
+                <div class="sub-panel active" id="bath-master">
+                    <div class="material-group">
+                        <div class="material-group__header">
+                            <div class="material-group__icon"><i class="fa-solid fa-shower"></i></div>
+                            <h3 class="material-group__title">主臥衛浴風格</h3>
+                        </div>
+                        <div class="material-options">
+                            <label class="material-option">
+                                <input type="radio" name="master_bath_style" value="modern-pop" data-label="摩登普普風" checked>
+                                <div class="material-option__label">
+                                    <div class="material-option__swatch" style="background: linear-gradient(135deg, #e8d5c4, #c4a882);"></div>
+                                    <span class="material-option__name">摩登普普風</span>
+                                </div>
+                                <span class="material-option__check"><i class="fa-solid fa-check"></i></span>
+                            </label>
+                            <label class="material-option">
+                                <input type="radio" name="master_bath_style" value="nordic" data-label="北歐風">
+                                <div class="material-option__label">
+                                    <div class="material-option__swatch" style="background: linear-gradient(135deg, #e8e4de, #ccc8c0);"></div>
+                                    <span class="material-option__name">北歐風</span>
+                                </div>
+                                <span class="material-option__check"><i class="fa-solid fa-check"></i></span>
+                            </label>
+                            <label class="material-option">
+                                <input type="radio" name="master_bath_style" value="japanese" data-label="日式禪風">
+                                <div class="material-option__label">
+                                    <div class="material-option__swatch" style="background: linear-gradient(135deg, #c9bfa8, #a89880);"></div>
+                                    <span class="material-option__name">日式禪風</span>
+                                </div>
+                                <span class="material-option__check"><i class="fa-solid fa-check"></i></span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="material-group">
+                        <div class="material-group__header">
+                            <div class="material-group__icon"><i class="fa-solid fa-door-closed"></i></div>
+                            <h3 class="material-group__title">主臥浴室門扇</h3>
+                        </div>
+                        <div class="material-options">
+                            <label class="material-option">
+                                <input type="radio" name="master_bath_door" value="walnut" data-label="胡桃木" checked>
+                                <div class="material-option__label">
+                                    <div class="material-option__swatch" style="background: #5c3d2e;"></div>
+                                    <span class="material-option__name">胡桃木</span>
+                                </div>
+                                <span class="material-option__check"><i class="fa-solid fa-check"></i></span>
+                            </label>
+                            <label class="material-option">
+                                <input type="radio" name="master_bath_door" value="star-oak" data-label="星際橡木">
+                                <div class="material-option__label">
+                                    <div class="material-option__swatch" style="background: #8b7355;"></div>
+                                    <span class="material-option__name">星際橡木</span>
+                                </div>
+                                <span class="material-option__check"><i class="fa-solid fa-check"></i></span>
+                            </label>
+                            <label class="material-option">
+                                <input type="radio" name="master_bath_door" value="eucalyptus" data-label="淺尤加利">
+                                <div class="material-option__label">
+                                    <div class="material-option__swatch" style="background: #c4b896;"></div>
+                                    <span class="material-option__name">淺尤加利</span>
+                                </div>
+                                <span class="material-option__check"><i class="fa-solid fa-check"></i></span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 次臥衛浴 -->
+                <div class="sub-panel" id="bath-second">
+                    <div class="material-group">
+                        <div class="material-group__header">
+                            <div class="material-group__icon"><i class="fa-solid fa-shower"></i></div>
+                            <h3 class="material-group__title">次臥衛浴風格</h3>
+                        </div>
+                        <div class="material-options">
+                            <label class="material-option">
+                                <input type="radio" name="second_bath_style" value="modern-pop" data-label="摩登普普風" checked>
+                                <div class="material-option__label">
+                                    <div class="material-option__swatch" style="background: linear-gradient(135deg, #e8d5c4, #c4a882);"></div>
+                                    <span class="material-option__name">摩登普普風</span>
+                                </div>
+                                <span class="material-option__check"><i class="fa-solid fa-check"></i></span>
+                            </label>
+                            <label class="material-option">
+                                <input type="radio" name="second_bath_style" value="nordic" data-label="北歐風">
+                                <div class="material-option__label">
+                                    <div class="material-option__swatch" style="background: linear-gradient(135deg, #e8e4de, #ccc8c0);"></div>
+                                    <span class="material-option__name">北歐風</span>
+                                </div>
+                                <span class="material-option__check"><i class="fa-solid fa-check"></i></span>
+                            </label>
+                            <label class="material-option">
+                                <input type="radio" name="second_bath_style" value="japanese" data-label="日式禪風">
+                                <div class="material-option__label">
+                                    <div class="material-option__swatch" style="background: linear-gradient(135deg, #c9bfa8, #a89880);"></div>
+                                    <span class="material-option__name">日式禪風</span>
+                                </div>
+                                <span class="material-option__check"><i class="fa-solid fa-check"></i></span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="material-group">
+                        <div class="material-group__header">
+                            <div class="material-group__icon"><i class="fa-solid fa-door-closed"></i></div>
+                            <h3 class="material-group__title">次臥浴室門扇</h3>
+                        </div>
+                        <div class="material-options">
+                            <label class="material-option">
+                                <input type="radio" name="second_bath_door" value="walnut" data-label="胡桃木" checked>
+                                <div class="material-option__label">
+                                    <div class="material-option__swatch" style="background: #5c3d2e;"></div>
+                                    <span class="material-option__name">胡桃木</span>
+                                </div>
+                                <span class="material-option__check"><i class="fa-solid fa-check"></i></span>
+                            </label>
+                            <label class="material-option">
+                                <input type="radio" name="second_bath_door" value="star-oak" data-label="星際橡木">
+                                <div class="material-option__label">
+                                    <div class="material-option__swatch" style="background: #8b7355;"></div>
+                                    <span class="material-option__name">星際橡木</span>
+                                </div>
+                                <span class="material-option__check"><i class="fa-solid fa-check"></i></span>
+                            </label>
+                            <label class="material-option">
+                                <input type="radio" name="second_bath_door" value="eucalyptus" data-label="淺尤加利">
+                                <div class="material-option__label">
+                                    <div class="material-option__swatch" style="background: #c4b896;"></div>
+                                    <span class="material-option__name">淺尤加利</span>
+                                </div>
+                                <span class="material-option__check"><i class="fa-solid fa-check"></i></span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ==================== 臥室 ==================== -->
+            <div class="section-panel" id="sec-bedroom">
+                <h2 class="section-panel__title">臥室選材</h2>
+                <p class="section-panel__desc">分別為各臥室選擇門扇、地坪與油漆</p>
+
+                <div class="sub-tabs">
+                    <button class="sub-tab active" data-subtab="bed-master">主臥室</button>
+                    <button class="sub-tab" data-subtab="bed-room1">臥室 1</button>
+                    <button class="sub-tab" data-subtab="bed-room2">臥室 2</button>
+                </div>
+
+                <!-- 主臥室 -->
+                <div class="sub-panel active" id="bed-master">
+                    <div class="material-group">
+                        <div class="material-group__header">
+                            <div class="material-group__icon"><i class="fa-solid fa-door-closed"></i></div>
+                            <h3 class="material-group__title">主臥門扇</h3>
+                        </div>
+                        <div class="material-options">
+                            <label class="material-option">
+                                <input type="radio" name="master_door" value="walnut" data-label="胡桃木" checked>
+                                <div class="material-option__label">
+                                    <div class="material-option__swatch" style="background: #5c3d2e;"></div>
+                                    <span class="material-option__name">胡桃木</span>
+                                </div>
+                                <span class="material-option__check"><i class="fa-solid fa-check"></i></span>
+                            </label>
+                            <label class="material-option">
+                                <input type="radio" name="master_door" value="star-oak" data-label="星際橡木">
+                                <div class="material-option__label">
+                                    <div class="material-option__swatch" style="background: #8b7355;"></div>
+                                    <span class="material-option__name">星際橡木</span>
+                                </div>
+                                <span class="material-option__check"><i class="fa-solid fa-check"></i></span>
+                            </label>
+                            <label class="material-option">
+                                <input type="radio" name="master_door" value="eucalyptus" data-label="淺尤加利">
+                                <div class="material-option__label">
+                                    <div class="material-option__swatch" style="background: #c4b896;"></div>
+                                    <span class="material-option__name">淺尤加利</span>
+                                </div>
+                                <span class="material-option__check"><i class="fa-solid fa-check"></i></span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="material-group">
+                        <div class="material-group__header">
+                            <div class="material-group__icon"><i class="fa-solid fa-border-all"></i></div>
+                            <h3 class="material-group__title">主臥地坪</h3>
+                        </div>
+                        <div class="material-options">
+                            <label class="material-option">
+                                <input type="radio" name="master_floor" value="butterfly-gray" data-label="蝴蝶灰杉" checked>
+                                <div class="material-option__label">
+                                    <div class="material-option__swatch" style="background: #9e9590;"></div>
+                                    <span class="material-option__name">蝴蝶灰杉</span>
+                                </div>
+                                <span class="material-option__check"><i class="fa-solid fa-check"></i></span>
+                            </label>
+                            <label class="material-option">
+                                <input type="radio" name="master_floor" value="california-gold" data-label="加州金木 EW8263">
+                                <div class="material-option__label">
+                                    <div class="material-option__swatch" style="background: #c4a872;"></div>
+                                    <span class="material-option__name">加州金木<br>EW8263</span>
+                                </div>
+                                <span class="material-option__check"><i class="fa-solid fa-check"></i></span>
+                            </label>
+                            <label class="material-option">
+                                <input type="radio" name="master_floor" value="king-snow" data-label="國王雪杉 EW8262">
+                                <div class="material-option__label">
+                                    <div class="material-option__swatch" style="background: #d6cfc5;"></div>
+                                    <span class="material-option__name">國王雪杉<br>EW8262</span>
+                                </div>
+                                <span class="material-option__check"><i class="fa-solid fa-check"></i></span>
+                            </label>
+                            <label class="material-option">
+                                <input type="radio" name="master_floor" value="california-silver" data-label="加州銀木 EW8261">
+                                <div class="material-option__label">
+                                    <div class="material-option__swatch" style="background: #b8b0a5;"></div>
+                                    <span class="material-option__name">加州銀木<br>EW8261</span>
+                                </div>
+                                <span class="material-option__check"><i class="fa-solid fa-check"></i></span>
+                            </label>
+                            <label class="material-option">
+                                <input type="radio" name="master_floor" value="king-gold" data-label="國王金杉 EW2000">
+                                <div class="material-option__label">
+                                    <div class="material-option__swatch" style="background: #c9b48a;"></div>
+                                    <span class="material-option__name">國王金杉<br>EW2000</span>
+                                </div>
+                                <span class="material-option__check"><i class="fa-solid fa-check"></i></span>
+                            </label>
+                            <label class="material-option">
+                                <input type="radio" name="master_floor" value="butterfly-rice" data-label="蝴蝶米杉 EW2004">
+                                <div class="material-option__label">
+                                    <div class="material-option__swatch" style="background: #ddd5c4;"></div>
+                                    <span class="material-option__name">蝴蝶米杉<br>EW2004</span>
+                                </div>
+                                <span class="material-option__check"><i class="fa-solid fa-check"></i></span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="material-group">
+                        <div class="material-group__header">
+                            <div class="material-group__icon"><i class="fa-solid fa-paint-roller"></i></div>
+                            <h3 class="material-group__title">主臥油漆</h3>
+                        </div>
+                        <div class="material-options">
+                            <label class="material-option">
+                                <input type="radio" name="master_paint" value="white" data-label="白色" checked>
+                                <div class="material-option__label">
+                                    <div class="material-option__swatch" style="background: #ffffff; border: 1px solid #ddd;"></div>
+                                    <span class="material-option__name">白色</span>
+                                </div>
+                                <span class="material-option__check"><i class="fa-solid fa-check"></i></span>
+                            </label>
+                            <label class="material-option">
+                                <input type="radio" name="master_paint" value="fog-country" data-label="霧鄉">
+                                <div class="material-option__label">
+                                    <div class="material-option__swatch" style="background: #d5cfc5;"></div>
+                                    <span class="material-option__name">霧鄉</span>
+                                </div>
+                                <span class="material-option__check"><i class="fa-solid fa-check"></i></span>
+                            </label>
+                            <label class="material-option">
+                                <input type="radio" name="master_paint" value="fog-pink" data-label="霧粉紅">
+                                <div class="material-option__label">
+                                    <div class="material-option__swatch" style="background: #e8c4c0;"></div>
+                                    <span class="material-option__name">霧粉紅</span>
+                                </div>
+                                <span class="material-option__check"><i class="fa-solid fa-check"></i></span>
+                            </label>
+                            <label class="material-option">
+                                <input type="radio" name="master_paint" value="light-orange" data-label="淡粉橘">
+                                <div class="material-option__label">
+                                    <div class="material-option__swatch" style="background: #eacdb0;"></div>
+                                    <span class="material-option__name">淡粉橘</span>
+                                </div>
+                                <span class="material-option__check"><i class="fa-solid fa-check"></i></span>
+                            </label>
+                            <label class="material-option">
+                                <input type="radio" name="master_paint" value="soda-green" data-label="蘇打綠">
+                                <div class="material-option__label">
+                                    <div class="material-option__swatch" style="background: #c5d9c0;"></div>
+                                    <span class="material-option__name">蘇打綠</span>
+                                </div>
+                                <span class="material-option__check"><i class="fa-solid fa-check"></i></span>
+                            </label>
+                            <label class="material-option">
+                                <input type="radio" name="master_paint" value="baby-blue" data-label="嬰兒藍">
+                                <div class="material-option__label">
+                                    <div class="material-option__swatch" style="background: #b8d4e3;"></div>
+                                    <span class="material-option__name">嬰兒藍</span>
+                                </div>
+                                <span class="material-option__check"><i class="fa-solid fa-check"></i></span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 臥室 1 -->
+                <div class="sub-panel" id="bed-room1">
+                    <div class="material-group">
+                        <div class="material-group__header">
+                            <div class="material-group__icon"><i class="fa-solid fa-door-closed"></i></div>
+                            <h3 class="material-group__title">臥室 1 門扇</h3>
+                        </div>
+                        <div class="material-options">
+                            <label class="material-option"><input type="radio" name="room1_door" value="walnut" data-label="胡桃木" checked><div class="material-option__label"><div class="material-option__swatch" style="background:#5c3d2e;"></div><span class="material-option__name">胡桃木</span></div><span class="material-option__check"><i class="fa-solid fa-check"></i></span></label>
+                            <label class="material-option"><input type="radio" name="room1_door" value="star-oak" data-label="星際橡木"><div class="material-option__label"><div class="material-option__swatch" style="background:#8b7355;"></div><span class="material-option__name">星際橡木</span></div><span class="material-option__check"><i class="fa-solid fa-check"></i></span></label>
+                            <label class="material-option"><input type="radio" name="room1_door" value="eucalyptus" data-label="淺尤加利"><div class="material-option__label"><div class="material-option__swatch" style="background:#c4b896;"></div><span class="material-option__name">淺尤加利</span></div><span class="material-option__check"><i class="fa-solid fa-check"></i></span></label>
+                        </div>
+                    </div>
+                    <div class="material-group">
+                        <div class="material-group__header">
+                            <div class="material-group__icon"><i class="fa-solid fa-border-all"></i></div>
+                            <h3 class="material-group__title">臥室 1 地坪</h3>
+                        </div>
+                        <div class="material-options">
+                            <label class="material-option"><input type="radio" name="room1_floor" value="butterfly-gray" data-label="蝴蝶灰杉" checked><div class="material-option__label"><div class="material-option__swatch" style="background:#9e9590;"></div><span class="material-option__name">蝴蝶灰杉</span></div><span class="material-option__check"><i class="fa-solid fa-check"></i></span></label>
+                            <label class="material-option"><input type="radio" name="room1_floor" value="california-gold" data-label="加州金木 EW8263"><div class="material-option__label"><div class="material-option__swatch" style="background:#c4a872;"></div><span class="material-option__name">加州金木<br>EW8263</span></div><span class="material-option__check"><i class="fa-solid fa-check"></i></span></label>
+                            <label class="material-option"><input type="radio" name="room1_floor" value="king-snow" data-label="國王雪杉 EW8262"><div class="material-option__label"><div class="material-option__swatch" style="background:#d6cfc5;"></div><span class="material-option__name">國王雪杉<br>EW8262</span></div><span class="material-option__check"><i class="fa-solid fa-check"></i></span></label>
+                            <label class="material-option"><input type="radio" name="room1_floor" value="california-silver" data-label="加州銀木 EW8261"><div class="material-option__label"><div class="material-option__swatch" style="background:#b8b0a5;"></div><span class="material-option__name">加州銀木<br>EW8261</span></div><span class="material-option__check"><i class="fa-solid fa-check"></i></span></label>
+                            <label class="material-option"><input type="radio" name="room1_floor" value="king-gold" data-label="國王金杉 EW2000"><div class="material-option__label"><div class="material-option__swatch" style="background:#c9b48a;"></div><span class="material-option__name">國王金杉<br>EW2000</span></div><span class="material-option__check"><i class="fa-solid fa-check"></i></span></label>
+                            <label class="material-option"><input type="radio" name="room1_floor" value="butterfly-rice" data-label="蝴蝶米杉 EW2004"><div class="material-option__label"><div class="material-option__swatch" style="background:#ddd5c4;"></div><span class="material-option__name">蝴蝶米杉<br>EW2004</span></div><span class="material-option__check"><i class="fa-solid fa-check"></i></span></label>
+                        </div>
+                    </div>
+                    <div class="material-group">
+                        <div class="material-group__header">
+                            <div class="material-group__icon"><i class="fa-solid fa-paint-roller"></i></div>
+                            <h3 class="material-group__title">臥室 1 油漆</h3>
+                        </div>
+                        <div class="material-options">
+                            <label class="material-option"><input type="radio" name="room1_paint" value="white" data-label="白色" checked><div class="material-option__label"><div class="material-option__swatch" style="background:#fff; border:1px solid #ddd;"></div><span class="material-option__name">白色</span></div><span class="material-option__check"><i class="fa-solid fa-check"></i></span></label>
+                            <label class="material-option"><input type="radio" name="room1_paint" value="fog-country" data-label="霧鄉"><div class="material-option__label"><div class="material-option__swatch" style="background:#d5cfc5;"></div><span class="material-option__name">霧鄉</span></div><span class="material-option__check"><i class="fa-solid fa-check"></i></span></label>
+                            <label class="material-option"><input type="radio" name="room1_paint" value="fog-pink" data-label="霧粉紅"><div class="material-option__label"><div class="material-option__swatch" style="background:#e8c4c0;"></div><span class="material-option__name">霧粉紅</span></div><span class="material-option__check"><i class="fa-solid fa-check"></i></span></label>
+                            <label class="material-option"><input type="radio" name="room1_paint" value="light-orange" data-label="淡粉橘"><div class="material-option__label"><div class="material-option__swatch" style="background:#eacdb0;"></div><span class="material-option__name">淡粉橘</span></div><span class="material-option__check"><i class="fa-solid fa-check"></i></span></label>
+                            <label class="material-option"><input type="radio" name="room1_paint" value="soda-green" data-label="蘇打綠"><div class="material-option__label"><div class="material-option__swatch" style="background:#c5d9c0;"></div><span class="material-option__name">蘇打綠</span></div><span class="material-option__check"><i class="fa-solid fa-check"></i></span></label>
+                            <label class="material-option"><input type="radio" name="room1_paint" value="baby-blue" data-label="嬰兒藍"><div class="material-option__label"><div class="material-option__swatch" style="background:#b8d4e3;"></div><span class="material-option__name">嬰兒藍</span></div><span class="material-option__check"><i class="fa-solid fa-check"></i></span></label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 臥室 2 -->
+                <div class="sub-panel" id="bed-room2">
+                    <div class="material-group">
+                        <div class="material-group__header">
+                            <div class="material-group__icon"><i class="fa-solid fa-door-closed"></i></div>
+                            <h3 class="material-group__title">臥室 2 門扇</h3>
+                        </div>
+                        <div class="material-options">
+                            <label class="material-option"><input type="radio" name="room2_door" value="walnut" data-label="胡桃木" checked><div class="material-option__label"><div class="material-option__swatch" style="background:#5c3d2e;"></div><span class="material-option__name">胡桃木</span></div><span class="material-option__check"><i class="fa-solid fa-check"></i></span></label>
+                            <label class="material-option"><input type="radio" name="room2_door" value="star-oak" data-label="星際橡木"><div class="material-option__label"><div class="material-option__swatch" style="background:#8b7355;"></div><span class="material-option__name">星際橡木</span></div><span class="material-option__check"><i class="fa-solid fa-check"></i></span></label>
+                            <label class="material-option"><input type="radio" name="room2_door" value="eucalyptus" data-label="淺尤加利"><div class="material-option__label"><div class="material-option__swatch" style="background:#c4b896;"></div><span class="material-option__name">淺尤加利</span></div><span class="material-option__check"><i class="fa-solid fa-check"></i></span></label>
+                        </div>
+                    </div>
+                    <div class="material-group">
+                        <div class="material-group__header">
+                            <div class="material-group__icon"><i class="fa-solid fa-border-all"></i></div>
+                            <h3 class="material-group__title">臥室 2 地坪</h3>
+                        </div>
+                        <div class="material-options">
+                            <label class="material-option"><input type="radio" name="room2_floor" value="butterfly-gray" data-label="蝴蝶灰杉" checked><div class="material-option__label"><div class="material-option__swatch" style="background:#9e9590;"></div><span class="material-option__name">蝴蝶灰杉</span></div><span class="material-option__check"><i class="fa-solid fa-check"></i></span></label>
+                            <label class="material-option"><input type="radio" name="room2_floor" value="california-gold" data-label="加州金木 EW8263"><div class="material-option__label"><div class="material-option__swatch" style="background:#c4a872;"></div><span class="material-option__name">加州金木<br>EW8263</span></div><span class="material-option__check"><i class="fa-solid fa-check"></i></span></label>
+                            <label class="material-option"><input type="radio" name="room2_floor" value="king-snow" data-label="國王雪杉 EW8262"><div class="material-option__label"><div class="material-option__swatch" style="background:#d6cfc5;"></div><span class="material-option__name">國王雪杉<br>EW8262</span></div><span class="material-option__check"><i class="fa-solid fa-check"></i></span></label>
+                            <label class="material-option"><input type="radio" name="room2_floor" value="california-silver" data-label="加州銀木 EW8261"><div class="material-option__label"><div class="material-option__swatch" style="background:#b8b0a5;"></div><span class="material-option__name">加州銀木<br>EW8261</span></div><span class="material-option__check"><i class="fa-solid fa-check"></i></span></label>
+                            <label class="material-option"><input type="radio" name="room2_floor" value="king-gold" data-label="國王金杉 EW2000"><div class="material-option__label"><div class="material-option__swatch" style="background:#c9b48a;"></div><span class="material-option__name">國王金杉<br>EW2000</span></div><span class="material-option__check"><i class="fa-solid fa-check"></i></span></label>
+                            <label class="material-option"><input type="radio" name="room2_floor" value="butterfly-rice" data-label="蝴蝶米杉 EW2004"><div class="material-option__label"><div class="material-option__swatch" style="background:#ddd5c4;"></div><span class="material-option__name">蝴蝶米杉<br>EW2004</span></div><span class="material-option__check"><i class="fa-solid fa-check"></i></span></label>
+                        </div>
+                    </div>
+                    <div class="material-group">
+                        <div class="material-group__header">
+                            <div class="material-group__icon"><i class="fa-solid fa-paint-roller"></i></div>
+                            <h3 class="material-group__title">臥室 2 油漆</h3>
+                        </div>
+                        <div class="material-options">
+                            <label class="material-option"><input type="radio" name="room2_paint" value="white" data-label="白色" checked><div class="material-option__label"><div class="material-option__swatch" style="background:#fff; border:1px solid #ddd;"></div><span class="material-option__name">白色</span></div><span class="material-option__check"><i class="fa-solid fa-check"></i></span></label>
+                            <label class="material-option"><input type="radio" name="room2_paint" value="fog-country" data-label="霧鄉"><div class="material-option__label"><div class="material-option__swatch" style="background:#d5cfc5;"></div><span class="material-option__name">霧鄉</span></div><span class="material-option__check"><i class="fa-solid fa-check"></i></span></label>
+                            <label class="material-option"><input type="radio" name="room2_paint" value="fog-pink" data-label="霧粉紅"><div class="material-option__label"><div class="material-option__swatch" style="background:#e8c4c0;"></div><span class="material-option__name">霧粉紅</span></div><span class="material-option__check"><i class="fa-solid fa-check"></i></span></label>
+                            <label class="material-option"><input type="radio" name="room2_paint" value="light-orange" data-label="淡粉橘"><div class="material-option__label"><div class="material-option__swatch" style="background:#eacdb0;"></div><span class="material-option__name">淡粉橘</span></div><span class="material-option__check"><i class="fa-solid fa-check"></i></span></label>
+                            <label class="material-option"><input type="radio" name="room2_paint" value="soda-green" data-label="蘇打綠"><div class="material-option__label"><div class="material-option__swatch" style="background:#c5d9c0;"></div><span class="material-option__name">蘇打綠</span></div><span class="material-option__check"><i class="fa-solid fa-check"></i></span></label>
+                            <label class="material-option"><input type="radio" name="room2_paint" value="baby-blue" data-label="嬰兒藍"><div class="material-option__label"><div class="material-option__swatch" style="background:#b8d4e3;"></div><span class="material-option__name">嬰兒藍</span></div><span class="material-option__check"><i class="fa-solid fa-check"></i></span></label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ==================== 其他 ==================== -->
+            <div class="section-panel" id="sec-other">
+                <h2 class="section-panel__title">其他區域</h2>
+                <p class="section-panel__desc">玄關門與客廳油漆配色</p>
+
+                <div class="material-group">
+                    <div class="material-group__header">
+                        <div class="material-group__icon"><i class="fa-solid fa-dungeon"></i></div>
+                        <h3 class="material-group__title">玄關門背面</h3>
+                    </div>
+                    <div class="material-options">
+                        <label class="material-option">
+                            <input type="radio" name="entrance_door" value="maple" data-label="楓木" checked>
+                            <div class="material-option__label">
+                                <div class="material-option__swatch" style="background: #d4b896;"></div>
+                                <span class="material-option__name">楓木</span>
+                            </div>
+                            <span class="material-option__check"><i class="fa-solid fa-check"></i></span>
+                        </label>
+                        <label class="material-option">
+                            <input type="radio" name="entrance_door" value="teak" data-label="柚木">
+                            <div class="material-option__label">
+                                <div class="material-option__swatch" style="background: #a07840;"></div>
+                                <span class="material-option__name">柚木</span>
+                            </div>
+                            <span class="material-option__check"><i class="fa-solid fa-check"></i></span>
+                        </label>
+                        <label class="material-option">
+                            <input type="radio" name="entrance_door" value="walnut" data-label="胡桃">
+                            <div class="material-option__label">
+                                <div class="material-option__swatch" style="background: #5c3d2e;"></div>
+                                <span class="material-option__name">胡桃</span>
+                            </div>
+                            <span class="material-option__check"><i class="fa-solid fa-check"></i></span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="material-group">
+                    <div class="material-group__header">
+                        <div class="material-group__icon"><i class="fa-solid fa-paint-roller"></i></div>
+                        <h3 class="material-group__title">客廳油漆</h3>
+                    </div>
+                    <div class="material-options">
+                        <label class="material-option"><input type="radio" name="living_paint" value="white" data-label="白色" checked><div class="material-option__label"><div class="material-option__swatch" style="background:#fff; border:1px solid #ddd;"></div><span class="material-option__name">白色</span></div><span class="material-option__check"><i class="fa-solid fa-check"></i></span></label>
+                        <label class="material-option"><input type="radio" name="living_paint" value="fog-country" data-label="霧鄉"><div class="material-option__label"><div class="material-option__swatch" style="background:#d5cfc5;"></div><span class="material-option__name">霧鄉</span></div><span class="material-option__check"><i class="fa-solid fa-check"></i></span></label>
+                        <label class="material-option"><input type="radio" name="living_paint" value="fog-pink" data-label="霧粉紅"><div class="material-option__label"><div class="material-option__swatch" style="background:#e8c4c0;"></div><span class="material-option__name">霧粉紅</span></div><span class="material-option__check"><i class="fa-solid fa-check"></i></span></label>
+                        <label class="material-option"><input type="radio" name="living_paint" value="light-orange" data-label="淡粉橘"><div class="material-option__label"><div class="material-option__swatch" style="background:#eacdb0;"></div><span class="material-option__name">淡粉橘</span></div><span class="material-option__check"><i class="fa-solid fa-check"></i></span></label>
+                        <label class="material-option"><input type="radio" name="living_paint" value="soda-green" data-label="蘇打綠"><div class="material-option__label"><div class="material-option__swatch" style="background:#c5d9c0;"></div><span class="material-option__name">蘇打綠</span></div><span class="material-option__check"><i class="fa-solid fa-check"></i></span></label>
+                        <label class="material-option"><input type="radio" name="living_paint" value="baby-blue" data-label="嬰兒藍"><div class="material-option__label"><div class="material-option__swatch" style="background:#b8d4e3;"></div><span class="material-option__name">嬰兒藍</span></div><span class="material-option__check"><i class="fa-solid fa-check"></i></span></label>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- 右側摘要 -->
+        <aside class="summary-sidebar">
+            <h3 class="summary-sidebar__title"><i class="fa-solid fa-clipboard-list"></i> 選材摘要</h3>
+
+            <div class="summary-group">
+                <div class="summary-group__label">廚房</div>
+                <div class="summary-item"><span class="summary-item__key">電器櫃</span><span class="summary-item__value" data-key="kitchen_cabinet">熱帶核桃木</span></div>
+                <div class="summary-item"><span class="summary-item__key">廚具檯面</span><span class="summary-item__value" data-key="kitchen_countertop">灰點帝雉石</span></div>
+                <div class="summary-item"><span class="summary-item__key">上櫃面板</span><span class="summary-item__value" data-key="upper_panel">熱帶核桃木</span></div>
+                <div class="summary-item"><span class="summary-item__key">下櫃面板</span><span class="summary-item__value" data-key="lower_panel">熱帶核桃木</span></div>
+                <div class="summary-item"><span class="summary-item__key">中島櫃體</span><span class="summary-item__value" data-key="island_body">熱帶核桃木</span></div>
+                <div class="summary-item"><span class="summary-item__key">中島檯面</span><span class="summary-item__value" data-key="island_top">灰點帝雉石</span></div>
+                <div class="summary-item"><span class="summary-item__key">廚具烤玻</span><span class="summary-item__value" data-key="kitchen_glass">黑玻</span></div>
+                <div class="summary-item"><span class="summary-item__key">地坪</span><span class="summary-item__value" data-key="kitchen_floor">國王雪杉 EW8262</span></div>
+                <div class="summary-item"><span class="summary-item__key">門片顏色</span><span class="summary-item__value" data-key="door_color">星際橡木</span></div>
+            </div>
+
+            <div class="summary-group">
+                <div class="summary-group__label">衛浴</div>
+                <div class="summary-item"><span class="summary-item__key">主臥衛浴風格</span><span class="summary-item__value" data-key="master_bath_style">摩登普普風</span></div>
+                <div class="summary-item"><span class="summary-item__key">主臥浴室門扇</span><span class="summary-item__value" data-key="master_bath_door">胡桃木</span></div>
+                <div class="summary-item"><span class="summary-item__key">次臥衛浴風格</span><span class="summary-item__value" data-key="second_bath_style">摩登普普風</span></div>
+                <div class="summary-item"><span class="summary-item__key">次臥浴室門扇</span><span class="summary-item__value" data-key="second_bath_door">胡桃木</span></div>
+            </div>
+
+            <div class="summary-group">
+                <div class="summary-group__label">臥室</div>
+                <div class="summary-item"><span class="summary-item__key">主臥門扇</span><span class="summary-item__value" data-key="master_door">胡桃木</span></div>
+                <div class="summary-item"><span class="summary-item__key">主臥地坪</span><span class="summary-item__value" data-key="master_floor">蝴蝶灰杉</span></div>
+                <div class="summary-item"><span class="summary-item__key">主臥油漆</span><span class="summary-item__value" data-key="master_paint">白色</span></div>
+                <div class="summary-item"><span class="summary-item__key">臥室1門扇</span><span class="summary-item__value" data-key="room1_door">胡桃木</span></div>
+                <div class="summary-item"><span class="summary-item__key">臥室1地坪</span><span class="summary-item__value" data-key="room1_floor">蝴蝶灰杉</span></div>
+                <div class="summary-item"><span class="summary-item__key">臥室1油漆</span><span class="summary-item__value" data-key="room1_paint">白色</span></div>
+                <div class="summary-item"><span class="summary-item__key">臥室2門扇</span><span class="summary-item__value" data-key="room2_door">胡桃木</span></div>
+                <div class="summary-item"><span class="summary-item__key">臥室2地坪</span><span class="summary-item__value" data-key="room2_floor">蝴蝶灰杉</span></div>
+                <div class="summary-item"><span class="summary-item__key">臥室2油漆</span><span class="summary-item__value" data-key="room2_paint">白色</span></div>
+            </div>
+
+            <div class="summary-group">
+                <div class="summary-group__label">其他</div>
+                <div class="summary-item"><span class="summary-item__key">玄關門背面</span><span class="summary-item__value" data-key="entrance_door">楓木</span></div>
+                <div class="summary-item"><span class="summary-item__key">客廳油漆</span><span class="summary-item__value" data-key="living_paint">白色</span></div>
+            </div>
+
+            <button class="btn-submit">送出夢想需求 →</button>
+        </aside>
+    </div>
+
+    <footer class="site-footer">
+        <div class="footer-inner">
+            <p class="footer-copyright">此為測試版本 — 客變選樣套圖系統</p>
+        </div>
+    </footer>
+
+    <script src="../js/room.js"></script>
+</body>
+</html>
