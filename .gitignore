@@ -1,0 +1,4 @@
+models/
+*.pth
+*.glb
+3d圖/
